@@ -1,0 +1,16 @@
+.button {
+  width: 300px;
+  height: 55px;
+  margin: 0.5rem 0;
+  background-color: $color-0094c6;
+  border-radius: 0.3rem;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  &__text {
+    color: $color-ffffff;
+    text-align: center;
+    font-weight: $weight-medium;
+    font-size: $size-18;
+  }
+}

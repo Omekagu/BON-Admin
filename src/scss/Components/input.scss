@@ -1,0 +1,16 @@
+.input {
+  width: 300px;
+  height: 55px;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  outline: none;
+  margin: 0.5rem 0;
+  border: 1px solid $color-0094c6;
+  background: $color-d9dfe2;
+  &::-webkit-input-placeholder {
+    font-weight: $weight-medium;
+    font-size: 13px;
+    text-transform: capitalize;
+    color: $color-000000;
+  }
+}

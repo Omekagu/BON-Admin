@@ -1,0 +1,32 @@
+.login {
+  background-image: url(../../../public/image/LoginBg.png);
+  height: 100vh;
+  background-position: top;
+  background-size: cover;
+  display: grid;
+  place-content: center;
+  &__container {
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 3rem 1rem;
+    background: $color-f5f8f9;
+  }
+  &__img {
+    width: 97px;
+  }
+  &__head {
+    font-size: 29px;
+    font-weight: 500;
+  }
+  &__forgot-text {
+    text-align: right;
+    text-transform: capitalize;
+    color: $color-0094c6;
+    cursor: pointer;
+  }
+}

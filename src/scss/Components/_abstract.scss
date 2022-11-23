@@ -1,0 +1,72 @@
+.chart {
+  width: 200px;
+  margin-left: -20px;
+  &__content {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+  }
+}
+.completed {
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 0.7rem;
+    margin: 3px;
+    color: $color-0094c6;
+    background-color: $color-0094c6;
+    // border-radius: 100%;
+  }
+}
+.cancelled {
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 0.7rem;
+    margin: 3px;
+    color: $color-ff0707;
+    background-color: $color-ff0707;
+    // border-radius: 100%;
+  }
+}
+.ongoing {
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 0.7rem;
+    margin: 3px;
+    color: $color-2dbc8b;
+    background-color: $color-2dbc8b;
+    // border-radius: 100%;
+  }
+}
+
+.cash__info {
+  display: flex;
+  flex-direction: column;
+
+  margin-right: 30px;
+
+  .inflow {
+    color: $color-0094c6;
+  }
+  .outflow {
+    color: $color-ff0707;
+  }
+  .total {
+    color: $color-2dbc8b;
+  }
+
+  &--right {
+    display: flex;
+    & > p {
+      margin-right: 10px;
+    }
+  }
+}

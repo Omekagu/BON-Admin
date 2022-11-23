@@ -1,0 +1,33 @@
+.header {
+  height: 60px;
+  margin-right: 10px;
+  background-color: $color-ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  text-transform: capitalize;
+  width: 78%;
+  position: fixed;
+  z-index: 1000;
+
+  &__right {
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+  }
+  svg {
+    margin: 1px;
+  }
+  &__notification {
+    background-color: $color-ff0707;
+    font-size: 0.4rem;
+    padding: 2px;
+    border-radius: 50%;
+    color: $color-ffffff;
+    transform: translate(-12px, -7px);
+  }
+  &__name {
+    padding-left: 5px;
+  }
+}

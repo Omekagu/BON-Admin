@@ -1,0 +1,46 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  background-color: $color-ffffff;
+  margin: 1% 1.5% 0 0;
+  padding: 2% 4%;
+  text-transform: capitalize;
+  min-width: 23%;
+  border: 1px solid $color-5a5a5a;
+  border-radius: 10px;
+
+  &__head {
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: $color-707070;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 24%;
+      padding-bottom: 5px;
+      border-bottom: 3px solid $color-0094c6;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    justify-content: center;
+
+    svg {
+      width: 30px;
+      height: 30px;
+      background-color: aqua;
+      padding: 0.5%;
+      border-radius: 50px;
+      margin-right: 1%;
+    }
+  }
+  &__number {
+    font-size: 35px;
+    margin-left: 1%;
+    color: $color-5a5a5a;
+  }
+}

@@ -1,0 +1,24 @@
+.right {
+  background-color: $color-ffffff;
+  width: 30%;
+  height: 60vh;
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+
+  &__content {
+    overflow: scroll;
+    height: 52vh;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__head {
+    p {
+      padding: 10px;
+      color: $color-707070;
+    }
+  }
+}

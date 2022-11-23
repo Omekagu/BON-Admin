@@ -1,0 +1,35 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+
+  &__sidebar {
+    width: 20%;
+    background-color: $color-010461;
+  }
+  &__mainboard {
+    width: 80%;
+    background-color: $color-eaf5f9;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  &__sectionOne {
+    margin: 70px 30px 30px 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  &__sectionTwo {
+    margin: 0 40px;
+    display: flex;
+    justify-content: center;
+  }
+  &__sectionThree {
+    justify-content: center;
+    margin: 30px 40px;
+    display: flex;
+  }
+}

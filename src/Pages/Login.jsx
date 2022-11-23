@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from './Components/Button';
-import Input from './Components/Input';
+import { Link } from 'react-router-dom';
+import Button from '../Components/Button';
+import Input from '../Components/Input';
 
 const Login = () => {
   return (
@@ -13,7 +14,9 @@ const Login = () => {
           <Input placeholder="password" />
         </form>
         <p className="login__forgot-text">forgot password?</p>
-        <Button text="Login" />
+        <Link to="/dashboard">
+          <Button text="Login" />
+        </Link>
       </div>
     </div>
   );

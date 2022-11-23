@@ -13,4 +13,8 @@
     font-weight: $weight-medium;
     font-size: $size-18;
   }
+
+  &:hover {
+    background-color: $color-67bedc;
+  }
 }

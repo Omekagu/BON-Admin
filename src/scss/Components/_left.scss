@@ -1,0 +1,45 @@
+.left {
+  background-color: $color-ffffff;
+  width: 75%;
+  height: 60vh;
+  padding: 15px;
+  border-radius: 10px;
+  margin-right: 10px;
+
+  &__head {
+    color: $color-707070;
+    text-transform: capitalize;
+  }
+  &__title {
+    color: $color-707070;
+  }
+  &__list {
+    margin: 10px 10px 0 0;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__rate {
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 1rem;
+      color: $color-2dbc8b;
+      margin-left: 5px;
+    }
+  }
+  &__day {
+    display: flex;
+
+    .day {
+      text-transform: uppercase;
+      margin-right: 10px;
+      padding: 2px;
+      border-radius: 3px;
+      cursor: pointer;
+      &:hover {
+        background-color: $color-707070;
+      }
+    }
+  }
+}

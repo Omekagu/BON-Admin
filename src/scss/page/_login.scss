@@ -24,9 +24,9 @@
     font-weight: 500;
   }
   &__forgot-text {
-    text-align: right;
     text-transform: capitalize;
     color: $color-0094c6;
     cursor: pointer;
+    transform: translateX(5rem);
   }
 }

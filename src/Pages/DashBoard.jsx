@@ -142,10 +142,10 @@ const DashBoard = () => {
 
             {/* chart */}
 
-            <ResponsiveContainer width="100%" height="75%">
+            <ResponsiveContainer width="100%" height="80%">
               <AreaChart
                 width={500}
-                height={200}
+                height={400}
                 data={data}
                 margin={{
                   top: 10,
@@ -359,6 +359,8 @@ const DashBoard = () => {
                 time="3 hours ago"
               />
               <TicketInfo name="ora hill" number="16234" time="3 hours ago" />
+              <TicketInfo name="brain dean" number="16234" time="3 hours ago" />
+              <TicketInfo name="brain dean" number="16234" time="3 hours ago" />
               <TicketInfo name="brain dean" number="16234" time="3 hours ago" />
             </div>
           </div>

@@ -1,6 +1,6 @@
 .right {
   background-color: $color-ffffff;
-  width: 30%;
+  min-width: 30%;
   height: 60vh;
   padding: 5px;
   border-radius: 10px;
@@ -8,7 +8,7 @@
 
   &__content {
     overflow: scroll;
-    height: 52vh;
+    height: 53vh;
 
     &::-webkit-scrollbar {
       display: none;

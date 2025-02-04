@@ -1,4 +1,4 @@
-import { DriveEta, PeopleAlt, Settings, ZoomOutMap } from '@mui/icons-material';
+import { DriveEta, Home, PeopleAlt, Settings, ZoomOutMap } from '@mui/icons-material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -12,28 +12,63 @@ const Sidebar = () => {
       <div className="sidebar__list">
         <Link to="/dashboard">
           <div className="sidebar__link active">
-            <ZoomOutMap />
-            overview
+            <Home /> 
+            Dashboard
           </div>
         </Link>
         <Link to="/dashboard">
           <div className="sidebar__link">
-            <PeopleAlt /> users
+            <PeopleAlt /> Opportunities
           </div>
         </Link>
         <Link to="/dashboard">
           <div className="sidebar__link">
-            <PeopleAlt /> riders
+            <PeopleAlt /> Room and rates
           </div>
         </Link>
         <Link to="/dashboard">
           <div className="sidebar__link">
-            <DriveEta /> riders history
+            <DriveEta /> Marketing
           </div>
         </Link>
         <Link to="/dashboard">
           <div className="sidebar__link">
-            <Settings /> rides settings
+            <Settings /> Reservations
+          </div>
+        </Link>
+        <Link to="/dashboard">
+          <div className="sidebar__link">
+            <Settings /> Guest relations
+          </div>
+        </Link>
+        <Link to="/dashboard">
+          <div className="sidebar__link">
+            <Settings /> Payments
+          </div>
+        </Link>
+        <Link to="/dashboard">
+          <div className="sidebar__link">
+            <Settings /> Property details
+          </div>
+        </Link>
+        <Link to="/dashboard">
+          <div className="sidebar__link">
+            <Settings /> Revenue mangement
+          </div>
+        </Link>
+        <Link to="/dashboard">
+          <div className="sidebar__link">
+            <Settings /> performance
+          </div>
+        </Link>
+        <Link to="/dashboard">
+          <div className="sidebar__link">
+            <Settings /> Administration
+          </div>
+        </Link>
+        <Link to="/dashboard">
+          <div className="sidebar__link">
+            <Settings /> Help and support
           </div>
         </Link>
       </div>

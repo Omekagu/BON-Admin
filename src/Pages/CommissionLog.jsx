@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 
-const DashBoard = () => {
+const CommissionLog = () => {
  
   return (
     <div className="dashboard">
@@ -18,4 +18,4 @@ const DashBoard = () => {
   );
 };
 
-export default DashBoard;
+export default CommissionLog;

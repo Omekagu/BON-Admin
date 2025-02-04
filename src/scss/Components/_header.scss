@@ -1,33 +1,67 @@
 .header {
   height: 60px;
-  margin-right: 10px;
-  background-color: $color-ffffff;
+  background-color: $color-67bedc;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
   text-transform: capitalize;
-  width: 78%;
+  width: calc(100% - 250px); // Adjusts with sidebar width
   position: fixed;
+  right: 0;
+  top: 0;
   z-index: 1000;
+  transition: width 0.3s ease-in-out;
 
   &__right {
     display: flex;
     align-items: center;
     padding-right: 15px;
   }
+
   svg {
-    margin: 1px;
+    margin: 5px;
   }
+
   &__notification {
-    background-color: $color-ff0707;
+    background-color: #ff0707;
     font-size: 0.4rem;
     padding: 2px;
     border-radius: 50%;
-    color: $color-ffffff;
+    color: white;
     transform: translate(-12px, -7px);
   }
+
   &__name {
     padding-left: 5px;
+    padding-right: 10px;
+    border: 2px solid black;
+  }
+
+  // Medium Screens: Reduce Padding
+  @media (max-width: 1024px) {
+    width: calc(100% - 80px); // Adjusts to smaller sidebar
+    padding: 0 15px;
+  }
+
+  // Small Screens: Full Width & Center Elements
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 10px;
+    height: 50px;
+    
+    .header__right {
+      padding-right: 5px;
+    }
+
+    svg {
+      margin: 3px;
+    }
+
+    &__name {
+      font-size: 0.8rem;
+      padding-left: 3px;
+      padding-right: 5px;
+    }
   }
 }

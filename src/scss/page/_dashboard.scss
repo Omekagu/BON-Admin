@@ -1,13 +1,13 @@
 .dashboard {
   display: flex;
-  height: 100vh;
-
+  
   &__sidebar {
-    width: 20%;
+    height: 100%;
+    // width: 20%;
     background-color: $color-010461;
   }
   &__mainboard {
-    width: 80%;
+    // width: 80%;
     background-color: $color-eaf5f9;
     overflow-x: hidden;
     overflow-y: scroll;

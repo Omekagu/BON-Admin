@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="login__container">
-        <img src="./image/logo.png" alt="logo" className="login__img" />
+        <img src="https://i.postimg.cc/vBGy3rS3/Screenshot-2024-11-25-145218.png" alt="logo" className="login__img" />
         <h3 className="login__head">Admin Login</h3>
         <form action="" className="login__form">
           <Input placeholder="email address" />

@@ -2,8 +2,9 @@ import React from 'react';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 
-const DashBoard = () => {
- 
+
+const ManageRole = () => {
+  
   return (
     <div className="dashboard">
       <div className="dashboard__sidebar">
@@ -18,4 +19,4 @@ const DashBoard = () => {
   );
 };
 
-export default DashBoard;
+export default ManageRole;

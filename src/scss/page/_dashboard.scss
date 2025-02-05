@@ -1,5 +1,6 @@
 .dashboard {
   display: flex;
+  transition: margin-left 0.3s ease-in-out;
   
   &__sidebar {
     height: 100%;
@@ -8,19 +9,25 @@
   }
   &__mainboard {
     // width: 80%;
-    background-color: $color-eaf5f9;
-    overflow-x: hidden;
-    overflow-y: scroll;
+  background-color: $color-eaf5f9;
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
+  &.shifted {
+    margin-left: 0;
+  }
 
     &::-webkit-scrollbar {
       display: none;
     }
   }
-  &__sectionOne {
+  &__content {
     margin: 70px 30px 30px 30px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    background-color: red;
   }
   &__sectionTwo {
     margin: 0 40px;

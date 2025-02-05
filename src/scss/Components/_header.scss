@@ -12,7 +12,17 @@
   top: 0;
   z-index: 1000;
   transition: width 0.3s ease-in-out;
+  
+  .hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
 
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
   &__right {
     display: flex;
     align-items: center;
@@ -44,24 +54,18 @@
     padding: 0 15px;
   }
 
-  // Small Screens: Full Width & Center Elements
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 0 10px;
-    height: 50px;
-    
-    .header__right {
-      padding-right: 5px;
-    }
-
-    svg {
-      margin: 3px;
-    }
-
-    &__name {
-      font-size: 0.8rem;
-      padding-left: 3px;
-      padding-right: 5px;
-    }
+ // Responsive Design for Mobile
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
   }
+
+  .dashboard__mainboard {
+    margin-left: 0; // No sidebar on mobile
+  }
+
+  .header {
+    width: 100%;
+  }
+}
 }

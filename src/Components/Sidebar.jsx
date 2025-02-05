@@ -8,12 +8,12 @@ import {
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen }) => {
   const location = useLocation();
   const [activePath, setActivePath] = useState(location.pathname);
-  const [isOpen, setIsOpen] = useState(false);
+  
 
-  const toggleSidebar = () => setIsOpen(!isOpen);
+  // const toggleSidebar = () => setIsOpen(!isOpen);
   const handleClick = (path) => {
     setActivePath(path);
   };
@@ -51,13 +51,8 @@ const Sidebar = () => {
 
 
   return (
-    <div className={`sidebar ${isOpen ? "open" : ""}`}>
+    <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
 
-<button className="hamburger" onClick={toggleSidebar}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
       <img 
         src="https://i.postimg.cc/vBGy3rS3/Screenshot-2024-11-25-145218.png" 
         alt="logo" 

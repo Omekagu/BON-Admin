@@ -1,11 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { NotificationsNone } from '@mui/icons-material';
+import { Menu, NotificationsNone } from '@mui/icons-material';
 import { Avatar } from '@mui/material';
 
-const Header = () => {
+const Header = ({ toggleSidebar }) => {
   const location = useLocation();
-
   // Map paths to readable page names
   const pageTitles = {
         "/": "Login",
@@ -32,11 +31,14 @@ const Header = () => {
   };
 
   // Get the current page name or default to "Dashboard"
-  const activePage = pageTitles[location.pathname] || "Dashboard";
+  const activePage = pageTitles[location.pathname] || "Not Found";
 
 
   return (
     <div className="header">
+      <button className="hamburger" onClick={toggleSidebar}>
+        <Menu fontSize="large" />
+      </button>
       <h3 className='header__activePage'>{activePage}</h3>
       <div className="header__right">
         <NotificationsNone />
@@ -52,3 +54,4 @@ const Header = () => {
 };
 
 export default Header;
+

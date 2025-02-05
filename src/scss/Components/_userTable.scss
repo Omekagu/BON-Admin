@@ -1,0 +1,137 @@
+.userTable {
+    width: calc(100% - 50px); // Matches header width
+    // margin: 80px auto 20px auto; // Ensures spacing below the fixed header
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-left: 250px;
+    overflow-x: auto;
+    transition: width 0.3s ease-in-out;
+  
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+  
+      h2 {
+        font-size: 22px;
+        color: #333;
+        text-transform: capitalize;
+      }
+  
+      input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        width: 250px;
+      }
+    }
+  }
+  
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background: white;
+  
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    th {
+      background: #f8f8f8;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  
+    .sortable:hover {
+      color: #007bff;
+    }
+  
+    td {
+      color: #555;
+    }
+  
+    .status {
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+  
+      &.active {
+        background: #e0f9e0;
+        color: #2e7d32;
+      }
+  
+      &.inactive {
+        background: #fce8e8;
+        color: #d32f2f;
+      }
+    }
+  
+    .actions {
+      display: flex;
+      gap: 10px;
+  
+      svg {
+        cursor: pointer;
+        font-size: 18px;
+  
+        &.view {
+          color: #007bff;
+        }
+        
+        &.edit {
+          color: #ffa500;
+        }
+  
+        &.delete {
+          color: #ff0000;
+        }
+      }
+    }
+  }
+  
+  // Medium Screens: Adjust Table Width
+  @media (max-width: 1024px) {
+    .userTable {
+      width: calc(100% - 80px); // Matches header width when sidebar shrinks
+      padding: 15px;
+    }
+  
+    .userTable__header {
+      flex-direction: column;
+      align-items: flex-start;
+  
+      input {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  }
+  
+  // Mobile Screens: Full Width
+  @media (max-width: 768px) {
+    .userTable {
+      width: 100%; // Full width when sidebar is hidden
+      margin: 70px 0 20px 0;
+    }
+  
+    table {
+      font-size: 14px;
+    }
+  
+    th, td {
+      padding: 10px;
+    }
+  }
+  

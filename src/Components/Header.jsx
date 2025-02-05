@@ -25,7 +25,7 @@ const Header = ({ toggleSidebar }) => {
         "/manage-theme": "ManageTheme",
         "/commission-log": "CommissionLog",
         "/manage-mobile": "ManageMobile",
-        "/newsletter": "Newsletter",
+        "/newsletter": "Newsletters",
         "/report": "Report",
         "/update-system": "UpdateSystem",
   };
@@ -39,14 +39,13 @@ const Header = ({ toggleSidebar }) => {
       <button className="hamburger" onClick={toggleSidebar}>
         <Menu fontSize="large" />
       </button>
-      <h3 className='header__activePage'>{activePage}</h3>
+      <h5 className='header__activePage'>{activePage}</h5>
       <div className="header__right">
         <NotificationsNone />
-        <span className="header__notification">1</span>
-<div className="header__name">
-<h5>Super Admin</h5>
-</div>
-        
+          <span className="header__notification">1</span>
+          <div className="header__name">
+          <h5>Super Admin</h5>
+        </div>
         <Avatar />
       </div>
     </div>

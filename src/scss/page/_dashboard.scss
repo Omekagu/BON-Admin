@@ -9,7 +9,7 @@
   }
   &__mainboard {
     // width: 80%;
-  background-color: $color-eaf5f9;
+  background: #fff;
   flex-grow: 1;
   padding: 20px;
   margin-left: 250px;
@@ -23,11 +23,12 @@
     }
   }
   &__content {
-    margin: 70px 30px 30px 30px;
+    padding: 70px 30px 30px 30px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: red;
+    background: #fff;
+    // background-color: red;
   }
   &__sectionTwo {
     margin: 0 40px;

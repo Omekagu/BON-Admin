@@ -87,7 +87,7 @@ const UserTable = () => {
   return (
     <div className="userTable">
       <div className="userTable__header">
-        <h2>Users List</h2>
+        <h2>U s e r s</h2>
         <input type="text" placeholder="Search users..." />
       </div>
 

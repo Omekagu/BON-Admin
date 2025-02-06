@@ -63,12 +63,15 @@ const Sidebar = ({ isOpen }) => {
 
   return (
     <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
-
+      <div className='sidebar__logo'>
       <img 
         src="https://i.postimg.cc/vBGy3rS3/Screenshot-2024-11-25-145218.png" 
         alt="logo" 
         className="sidebar__img" 
       />
+      </div>
+
+      
 
       <div className="sidebar__list">
         {Object.entries(groupedLinks).map(([category, links]) => (
@@ -83,7 +86,7 @@ const Sidebar = ({ isOpen }) => {
                       className={`sidebar__link ${openDropdowns[link.name.toLowerCase()] ? "open" : ""}`} 
                       onClick={() => toggleDropdown(link.name.toLowerCase())}
                     >
-                      {link.icon} {link.name} 
+                      {link.icon} <p className='sidebar__name'>{link.name} </p> 
                       {openDropdowns[link.name.toLowerCase()] ? <ExpandLess /> : <ExpandMore />}
                     </div>
                     {openDropdowns[link.name.toLowerCase()] && (
@@ -95,7 +98,7 @@ const Sidebar = ({ isOpen }) => {
                             className={`sidebar__sublink ${activePath === sub.path ? "active" : ""}`}
                             onClick={() => handleClick(sub.path)}
                           >
-                            {sub.name}
+                            <p className='sidebar__subname'>{sub.name} </p> 
                           </Link>
                         ))}
                       </div>
@@ -107,7 +110,7 @@ const Sidebar = ({ isOpen }) => {
                     className={`sidebar__link ${activePath === link.path ? "active" : ""}`}
                     onClick={() => handleClick(link.path)}
                   >
-                    {link.icon} {link.name}
+                    {link.icon} <p className=''>{link.name} </p> 
                   </Link>
                 )}
               </React.Fragment>

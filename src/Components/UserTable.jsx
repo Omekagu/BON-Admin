@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Edit, Visibility, Delete } from "@mui/icons-material";
 import axios from "axios"; // For API calls
-import { Modal, Box, Button, TextField } from "@mui/material";
-import ReactPaginate from "react-paginate";
+import { Modal, Box, Button, TextField, Pagination } from "@mui/material";
+import * as XLSX from "xlsx"; // For Excel download
 
 const UserTable = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1); // Updated to 1-based page number
   const [userToEdit, setUserToEdit] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // State to store search query
 
   // Fetch dummy users from JSONPlaceholder API
   useEffect(() => {
@@ -36,11 +37,15 @@ const UserTable = () => {
 
   // Paginate users
   const usersPerPage = 5;
-  const paginatedUsers = users.slice(currentPage * usersPerPage, (currentPage + 1) * usersPerPage);
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    user.email.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  const paginatedUsers = filteredUsers.slice((currentPage - 1) * usersPerPage, currentPage * usersPerPage);
 
   // Handle page change
-  const handlePageClick = (event) => {
-    setCurrentPage(event.selected);
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
   };
 
   // View User Details
@@ -84,11 +89,36 @@ const UserTable = () => {
     }
   };
 
+  // Handle search query change
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Excel download functionality
+  const downloadExcel = () => {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(filteredUsers);
+    XLSX.utils.book_append_sheet(wb, ws, "Users");
+    XLSX.writeFile(wb, "users_data.xlsx");
+  };
+
   return (
     <div className="userTable">
       <div className="userTable__header">
-        <h2>U s e r s</h2>
-        <input type="text" placeholder="Search users..." />
+        <h2>Users</h2>
+        <input 
+          type="text" 
+          placeholder="Search users..." 
+          value={searchQuery} 
+          onChange={handleSearchChange} 
+        />
+        <Button 
+          variant="contained" 
+          onClick={downloadExcel} 
+          style={{ marginLeft: "10px" }}
+        >
+          Download Excel
+        </Button>
       </div>
 
       <div className="table-container">
@@ -138,14 +168,13 @@ const UserTable = () => {
 
       {/* Pagination */}
       <div className="pagination">
-        <ReactPaginate
-          previousLabel={"← Previous"}
-          nextLabel={"Next →"}
-          breakLabel={"..."}
-          pageCount={Math.ceil(users.length / usersPerPage)}
-          onPageChange={handlePageClick}
-          containerClassName={"pagination__container"}
-          activeClassName={"active"}
+        <Pagination
+          count={Math.ceil(filteredUsers.length / usersPerPage)} // Total number of pages
+          page={currentPage} // Current page state
+          onChange={handlePageChange} // Handler for page change
+          variant="outlined" // Optional style choice
+          shape="rounded" // Optional rounded edges for pagination buttons
+          color="primary" // Optional color style for active page
         />
       </div>
 

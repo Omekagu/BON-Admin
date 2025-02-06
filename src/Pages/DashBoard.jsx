@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 import UserTable from '../Components/UserTable';
+import { DashboardChart } from '../Components/DashboardChart';
 
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar default open
@@ -20,7 +21,8 @@ const DashBoard = () => {
         {/* Header section */}
         <Header toggleSidebar={toggleSidebar} />
         <div className="dashboard__content">
-         <UserTable/>
+          <DashboardChart/>
+          <UserTable/>
         </div>
         </div>
       </div>

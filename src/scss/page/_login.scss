@@ -1,13 +1,16 @@
 .login {
   background-image: url(../../../public/image/LoginBg.png);
-  height: 100vh;
-  background-position: top;
+  background-position: center;
   background-size: cover;
   display: grid;
   place-content: center;
+  height: 100vh;
+  overflow: hidden; // Prevents the background image from causing an overflow
+
   &__container {
-    width: 400px;
-    height: 500px;
+    width: 100%;
+    max-width: 400px; // Ensures the container doesn't get too wide
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,18 +18,56 @@
     border-radius: 5px;
     padding: 3rem 1rem;
     background: $color-f5f8f9;
+    box-sizing: border-box; // Ensures padding doesn't affect the width and height
+
+    @media (max-width: 768px) {
+      width: 80%;
+      padding: 2rem 1rem;
+    }
+
+    @media (max-width: 480px) {
+      width: 90%;
+      padding: 1.5rem 1rem;
+    }
   }
+
   &__img {
     width: 97px;
+
+    @media (max-width: 768px) {
+      width: 80px;
+    }
+
+    @media (max-width: 480px) {
+      width: 70px;
+    }
   }
+
   &__head {
     font-size: 29px;
     font-weight: 500;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
   }
+
   &__forgot-text {
     text-transform: capitalize;
     color: $color-0094c6;
     cursor: pointer;
     transform: translateX(5rem);
+
+    @media (max-width: 768px) {
+      transform: translateX(3rem);
+    }
+
+    @media (max-width: 480px) {
+      transform: translateX(1rem);
+    }
   }
 }

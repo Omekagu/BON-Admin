@@ -1,12 +1,113 @@
 .dashboard {
   display: flex;
+  width: 100%;
   transition: margin-left 0.3s ease-in-out;
   
-  &__sidebar {
-    height: 100%;
-    // width: 20%;
-    background-color: $color-010461;
+
+  
+  &__main-content {
+    width: 60%;
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    margin-left: 250px;
+    flex-direction: column;
   }
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__card {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 20vh;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 100%;
+    margin: 0 10px;
+    text-align: start;
+    color: #000;
+    line-height: 150%;
+
+    opacity: 0; // Initially hidden
+    transform: translateY(50px);
+    animation: slideIn 0.8s ease-out forwards;
+
+    &:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    &:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    &.customers {
+      background-image: url("https://t3.ftcdn.net/jpg/12/12/18/24/240_F_1212182412_7njViHn3JFZpiFtdSiZEulHqymJXKM3W.jpg");
+    }
+    &.revenue {
+      background-image: url("https://t3.ftcdn.net/jpg/11/65/03/26/240_F_1165032630_NKoiBhdsnyLQ4TDMphAE1GLducAIOrXO.jpg");
+    }
+    &.growth {
+      background-image: url("https://t4.ftcdn.net/jpg/11/98/60/53/240_F_1198605300_alS7cRHmxxp7HUhd5DC8M8lmdsZUluIg.jpg");
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+    p {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+  }
+  
+  &__icon {
+    font-size: 30px;
+    color: #007bff;
+  }
+  
+  // &__charts {
+  //   // padding: 20px;
+  // }
+  
+  &__chart-box {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  &__chart-box h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  @media (max-width: 600px) {
+    &__chart-box {
+      padding: 15px;
+    }
+  }
+  
+  &__chart-box {
+    background: white;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 0 10px;
+  }
+  
   &__mainboard {
     // width: 80%;
   background: #fff;
@@ -30,14 +131,64 @@
     background: #fff;
     // background-color: red;
   }
-  &__sectionTwo {
-    margin: 0 40px;
-    display: flex;
-    justify-content: center;
+
+  
+// Responsive Design for Mobile & Tablets
+@media (max-width: 1024px) {
+  &__cards {
+    flex-direction: column;
+    align-items: center;
   }
-  &__sectionThree {
-    justify-content: center;
-    margin: 30px 40px;
-    display: flex;
+
+  &__card {
+    width: 90%;
+    margin: 10px 0;
+  }
+
+  &__charts {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__chart-box {
+    width: 90%;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+ 
+
+ 
+
+  &__cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__card {
+    width: 95%;
+  }
+
+  &__charts {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__chart-box {
+    width: 95%;
+  }
+}
+
+ 
+}
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

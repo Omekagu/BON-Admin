@@ -1,27 +1,54 @@
 .sidebar {
   text-align: center;
-  padding: 10px;
+  padding-top: 10px;
   width: 250px;
-  height: 100vh;
   background-color: $color-010461;
   position: fixed;
   left: 0;
   top: 0;
-  overflow-y: auto; // Allows scrolling
-  transition: width 0.3s ease-in-out;
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
 
+
+  &__subname {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: white;
+    }
+
+    &::before {
+      content: "○"; // Circle bullet icon
+      margin-right: 8px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    &.active {
+      color: white;
+      font-weight: 600;
+    }
+  }
+  
+  
+  
+  
+  // &__name{
+    // font-size: 13px;
+    // font-weight: 700;
+    // letter-spacing: 1.5px;
+  // }
  
-
-  &::-webkit-scrollbar {
-    width: 5px;
+  .sidebar__logo {
+    background-color: $color-010461;
+    position: sticky;
+    top: 0;
+    z-index: 10; // Ensures it stays above other content
   }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-  }
+  
 
   &.closed {
     transform: translateX(-100%);
@@ -41,7 +68,21 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px;
+    padding-left: 10px;
+    padding-bottom: 100px;
+    height: 100vh;
+    overflow-y: auto; // Allows scrolling
+    transition: width 0.3s ease-in-out;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
   }
 
   &__subhead {
@@ -58,7 +99,6 @@
     display: flex;
     align-items: center;
     color: black !important;
-    font-size: 1rem;
     text-transform: capitalize;
     padding: 10px;
     position: relative;
@@ -66,6 +106,9 @@
     text-decoration: none;
     transition: background-color 0.3s ease-in-out;
     cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
     
 
     svg {
@@ -84,22 +127,23 @@
       transition: left 0.3s ease-in-out;
       z-index: 1;
     }
-
+    
     &:hover::before {
       left: 0;
     }
-
+    
     &:hover {
+      border-radius: 10;
       color: black !important;
     }
 
     &.active {
       background-color: $color-000000;
-      border-radius: 3px;
+      border-radius: 10px;
       color: white !important;
     }
   }
-
+  
   &__sublink{
     margin: 5px 0;
     width: 100%;
@@ -115,6 +159,9 @@
     text-decoration: none;
     transition: background-color 0.3s ease-in-out;
     cursor: pointer;
+    border-radius: 10px;
+
+
     &::before {
       content: "";
       position: absolute;
@@ -125,14 +172,17 @@
       background-color: white;
       transition: left 0.3s ease-in-out;
       z-index: 1;
+      border-radius: 10px;
     }
 
     &:hover::before {
       left: 0;
+      border-radius: 10px;
     }
 
     &:hover {
       color: black !important;
+      border-radius: 10px;
     }
 
     &.active {

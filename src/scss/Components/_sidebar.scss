@@ -3,6 +3,12 @@
   padding-top: 10px;
   width: 250px;
   background-color: $color-010461;
+  // Change background to picture
+  // background-image: url('https://i.postimg.cc/5ttJxCXK/YTW-DELUXE-6.jpg');
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // 
   position: fixed;
   left: 0;
   top: 0;
@@ -32,17 +38,13 @@
       font-weight: 600;
     }
   }
-  
-  
-  
-  
-  // &__name{
-    // font-size: 13px;
-    // font-weight: 700;
-    // letter-spacing: 1.5px;
-  // }
  
   .sidebar__logo {
+    // background-image: url('https://i.postimg.cc/5ttJxCXK/YTW-DELUXE-6.jpg');
+    // background-size: cover;
+    // background-position: center;
+    // background-repeat: no-repeat;
+// background change
     background-color: $color-010461;
     position: sticky;
     top: 0;
@@ -106,8 +108,8 @@
     text-decoration: none;
     transition: background-color 0.3s ease-in-out;
     cursor: pointer;
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 500;
     letter-spacing: 1.5px;
     
 

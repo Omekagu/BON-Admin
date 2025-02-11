@@ -39,7 +39,7 @@
     }
   }
  
-  .sidebar__logo {
+  &__logo {
     // background-image: url('https://i.postimg.cc/5ttJxCXK/YTW-DELUXE-6.jpg');
     // background-size: cover;
     // background-position: center;
@@ -191,6 +191,24 @@
       background-color: $color-000000;
       border-radius: 3px;
       color: white !important;
+    }
+  }
+
+ 
+  
+  /* Animation for individual sublinks */
+  &__submenu.open, &__sublink {
+    animation: submenuSlide 0.3s ease-in-out forwards;
+  }
+  
+  @keyframes submenuSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
   

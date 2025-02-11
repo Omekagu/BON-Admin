@@ -115,6 +115,8 @@
   padding: 20px;
   margin-left: 250px;
   transition: margin-left 0.3s ease-in-out;
+  
+  background-color: $color-67bedc;
   &.shifted {
     margin-left: 0;
   }

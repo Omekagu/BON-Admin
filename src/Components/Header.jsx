@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, NotificationsNone, ExpandMore, ExpandLess } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 
 const Header = ({ toggleSidebar }) => {
   const location = useLocation();
+  const navigate = useNavigate(); // Get navigate function
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Page Titles Mapping
@@ -40,6 +41,12 @@ const Header = ({ toggleSidebar }) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  // Logout Function
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Remove token
+    navigate("/"); // Redirect to login
+  };
+
   return (
     <div className="header">
       {/* Sidebar Toggle Button */}
@@ -47,13 +54,9 @@ const Header = ({ toggleSidebar }) => {
         <Menu fontSize="large" />
       </button>
 
-
       {/* Active Page Name */}
       <div>
-      <h5 className="header__activePage">{activePage}</h5>
-        <div className="header__notificationWrapper">
-         {/* <p>SUPER ADMIN</p> */}
-        </div>
+        <h5 className="header__activePage">{activePage}</h5>
       </div>
 
       {/* Right Section */}
@@ -73,7 +76,7 @@ const Header = ({ toggleSidebar }) => {
         {isDropdownOpen && (
           <div className="header__dropdown">
             <p className="header__dropdownItem">Profile</p>
-            <p className="header__dropdownItem">Logout</p>
+            <p className="header__dropdownItem" onClick={handleLogout}>Logout</p> {/* Logout button */}
           </div>
         )}
       </div>

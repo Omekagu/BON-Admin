@@ -6,7 +6,8 @@
   place-content: center;
   height: 100vh;
   overflow: hidden; // Prevents the background image from causing an overflow
-
+  
+ 
   &__container {
     width: 100%;
     max-width: 400px; // Ensures the container doesn't get too wide
@@ -58,7 +59,7 @@
 
   &__forgot-text {
     text-transform: capitalize;
-    color: $color-0094c6;
+    color: $color-ffffff;
     cursor: pointer;
     transform: translateX(5rem);
 
@@ -71,3 +72,26 @@
     }
   }
 }
+
+.custom-login-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: white;
+  background-color: #a63932; /* Button color */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.custom-login-button:hover {
+  background-color: #8b2e28;
+}
+
+.custom-login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+

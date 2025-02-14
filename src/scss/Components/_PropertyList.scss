@@ -1,0 +1,175 @@
+.property-list {
+    background: #ffffff;
+    align-self: flex-end;
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+    margin-left: 300px;
+    margin-right: 80px;
+    margin-top: 20px;
+    h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .property-header{
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px 10px;
+    }
+
+    .property-create {
+        cursor: pointer;
+        padding: 10px;
+        background-color: #666;
+        color: #fff;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        border-radius: 10px;
+
+        h3{
+        font-size: 16px;   
+        text-transform:capitalize; 
+        }
+        
+      
+        &:hover {
+          color: #000;
+        }
+      }
+
+    .property-all{
+        // background-color: #666;
+        font-size: 15px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+  
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+  
+      thead {
+        background: #f7f7f7;
+      }
+  
+      th, td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+      }
+  
+      th {
+        font-weight: bold;
+      }
+  
+      .property-info {
+        line-height: 25px;
+        .property-name {
+          font-weight:500;
+          font-size: 13px;
+          color: #0073e6;
+        }
+  
+        .stars {
+          color: #ffcc00;
+          font-size: 14px;
+        }
+  
+        .property-details {
+          font-size: 12px;
+          color: #666;
+          font-weight: 900;
+        }
+      }
+  
+      .content-score {
+        color: #0073e6;
+        font-weight: bold;
+      }
+  
+      .status {
+        font-weight: bold;
+  
+        &.bookable {
+          color: green;
+        }
+  
+        &.not-bookable {
+          color: red;
+        }
+      }
+    }
+  
+    /* 📱 Mobile Responsiveness */
+    @media (max-width: 1024px) {
+      max-width: 90%; /* Increase width for smaller screens */
+    }
+  
+    @media (max-width: 768px) {
+      max-width: 100%;
+      table {
+        display: none; // Hide the table on small screens
+      }
+  
+      .property-card {
+        display: block;
+        background: #f9f9f9;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+  
+      .property-card .property-info {
+        .property-name {
+          font-size: 16px;
+          font-weight: bold;
+          color: #0073e6;
+        }
+  
+        .stars {
+          font-size: 14px;
+          color: #ffcc00;
+        }
+  
+        .property-details {
+          font-size: 13px;
+          color: #666;
+        }
+      }
+  
+      .content-score {
+        font-size: 14px;
+        color: #0073e6;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+  
+      .status {
+        font-size: 14px;
+        font-weight: bold;
+  
+        &.bookable {
+          color: green;
+        }
+  
+        &.not-bookable {
+          color: red;
+        }
+      }
+    }
+  }
+  

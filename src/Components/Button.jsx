@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Button = ({ text }) => {
+const Button = ({ text, onSubmit }) => {
   return (
-    <div className="button">
+    <div className="button" onSubmit={onSubmit}>
       <p className="button__text">{text}</p>
     </div>
   );

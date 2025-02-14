@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
+import PropertyList from '../Components/PropertyList';
 
 const ManageHotels = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar default open
@@ -19,7 +20,7 @@ const ManageHotels = () => {
         {/* Header section */}
         <Header toggleSidebar={toggleSidebar} />
         <div className="dashboard__content">
-          <h2>Welcome to Dashboard</h2>
+        <PropertyList/>
         </div>
         </div>
       </div>

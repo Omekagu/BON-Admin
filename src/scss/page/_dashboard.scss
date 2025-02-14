@@ -115,7 +115,7 @@
   padding: 20px;
   margin-left: 250px;
   transition: margin-left 0.3s ease-in-out;
-  
+  // height: 70vh;
   background-color: $color-67bedc;
   &.shifted {
     margin-left: 0;
@@ -131,6 +131,7 @@
     justify-content: center;
     flex-wrap: wrap;
     background: #fff;
+    height: 100%;
     // background-color: red;
   }
 

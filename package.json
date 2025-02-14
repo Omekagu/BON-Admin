@@ -23,6 +23,7 @@
     "react-paginate": "^8.3.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
+    "react-toastify": "^11.0.3",
     "recharts": "^2.1.16",
     "remove": "^0.1.5",
     "sass": "^1.56.1",

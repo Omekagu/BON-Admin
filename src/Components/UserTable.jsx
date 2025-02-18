@@ -17,15 +17,8 @@ const UserTable = () => {
     const fetchUsers = async () => {
       try {
         // Use JSONPlaceholder for demo users (mocked data)
-        const response = await axios.get("https://jsonplaceholder.typicode.com/users");
-        const usersWithFakeData = response.data.map((user) => ({
-          ...user,
-          phoneNumber: "123-456-7890",  // Fake phone number
-          country: "USA",               // Fake country
-          dateOfCreation: new Date().toISOString(),
-          status: "Active",             // Fake status
-        }));
-        setUsers(usersWithFakeData);
+        const response = await axios.get("http://localhost:5001/users");
+        setUsers(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);
       } finally {
@@ -36,9 +29,9 @@ const UserTable = () => {
   }, []);
 
   // Paginate users
-  const usersPerPage = 5;
+  const usersPerPage = 10;
   const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    user.username.toLowerCase().includes(searchQuery.toLowerCase()) || 
     user.email.toLowerCase().includes(searchQuery.toLowerCase())
   );
   const paginatedUsers = filteredUsers.slice((currentPage - 1) * usersPerPage, currentPage * usersPerPage);
@@ -50,7 +43,7 @@ const UserTable = () => {
 
   // View User Details
   const handleView = (id) => {
-    alert(`Viewing details for user ID: ${id}`);
+    alert(`Viewing details for user ID: ${users[0]._id}`);
   };
 
   // Edit User
@@ -62,7 +55,7 @@ const UserTable = () => {
   // Update User details
   const handleSave = () => {
     if (userToEdit) {
-      axios.put(`https://jsonplaceholder.typicode.com/users/${userToEdit.id}`, userToEdit) // Mock API PUT request
+      axios.put(`http://localhost:5001/users/${userToEdit.id}`, userToEdit) // Mock API PUT request
         .then(() => {
           setUsers(users.map(user => (user.id === userToEdit.id ? userToEdit : user)));
           setModalOpen(false);
@@ -80,7 +73,7 @@ const UserTable = () => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
 
     try {
-      await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`); // Mock API DELETE request
+      await axios.delete(`http://localhost:5001/users/${users._id}`); // Mock API DELETE request
       setUsers(users.filter(user => user.id !== id)); // Remove user from state
       alert("User deleted successfully!");
     } catch (error) {
@@ -129,9 +122,9 @@ const UserTable = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th>Username</th>
+                <th>email</th>
+                <th>Device</th>
                 <th>Phone Number</th>
                 <th>Date of Creation</th>
                 <th>Country</th>
@@ -141,17 +134,17 @@ const UserTable = () => {
             </thead>
             <tbody>
               {paginatedUsers.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.name.split(" ")[0]}</td> {/* Assuming first name */}
-                  <td>{user.name.split(" ")[1]}</td> {/* Assuming last name */}
+                <tr key={user._id}>
+                  <td>{user._id}</td>
+                  <td>{user.username.split(" ")[0]}</td> {/* Assuming first name */}
                   <td>{user.email}</td>
+                  <td>{user.deviceType}</td> {/* Assuming last name */}
                   <td>{user.phoneNumber}</td>
-                  <td>{new Date(user.dateOfCreation).toLocaleDateString()}</td>
-                  <td>{user.country}</td>
+                  <td>{new Date(user.createdAt).toLocaleDateString("en-US", {year: "numeric",month: "long",day: "numeric",})}</td>
+                  <td>{user.userCountry}</td>
                   <td>
                     <span className={`status ${user.status === "Active" ? "active" : "inactive"}`}>
-                      {user.status}
+                      {"Active"}
                     </span>
                   </td>
                   <td className="actions">

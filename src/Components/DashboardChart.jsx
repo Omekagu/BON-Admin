@@ -22,39 +22,39 @@ export const DashboardChart = () => {
     <main className="dashboard__main-content">
       <div className="dashboard__cards">
         <div className="dashboard__card customers">
-          <FaUsers className="dashboard__icon" />
+          <FaUsers className="dashboard__icon" color='#000'/>
           <h3>1,587</h3>
           <p>Customers</p>
         </div>
-        <div className="dashboard__card revenue">
-          <FaDollarSign className="dashboard__icon" />
+        <div className="dashboard__card revenue" >
+          <FaDollarSign className="dashboard__icon" color='#000'/>
           <h3>&#8358;46,785</h3>
           <p>Revenue</p>
         </div>
         <div className="dashboard__card growth">
-          <FaChartBar className="dashboard__icon" />
+          <FaChartBar className="dashboard__icon" color='#000'/>
           <h3>15.9%</h3>
           <p>Growth Rate</p>
         </div>
       </div>
       <div className="dashboard__cards">
         <div className="dashboard__card customers">
-          <FaUsers className="dashboard__icon" />
+          <FaUsers className="dashboard__icon" color='#000' />
           <h3>1,587</h3>
           <p>Customers</p>
         </div>
         <div className="dashboard__card revenue">
-          <FaDollarSign className="dashboard__icon" />
+          <FaDollarSign className="dashboard__icon" color='#000' />
           <h3>&#8358;46,785</h3>
           <p>Revenue</p>
         </div>
         <div className="dashboard__card growth">
-          <FaChartBar className="dashboard__icon" />
+          <FaChartBar className="dashboard__icon" color='#000' />
           <h3>15.9%</h3>
           <p>Growth Rate</p>
         </div>
         <div className="dashboard__card growth">
-          <FaChartBar className="dashboard__icon" />
+          <FaChartBar className="dashboard__icon" color='#000'/>
           <h3>15.9%</h3>
           <p>Growth Rate</p>
         </div>

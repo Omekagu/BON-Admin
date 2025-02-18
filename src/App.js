@@ -21,6 +21,8 @@ import Report from './Pages/Report';
 import UpdateSystem from './Pages/UpdateSystem';
 import ManagerUsers from './Pages/ManageUsers';
 import PrivateRoute from './Pages/PrivateRoute';
+import { Overview } from './Pages/dashboard/Overview';
+import { Analytics } from './Pages/dashboard/Analytics';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<DashBoard />} />
         </Route>
+          <Route path="/dashboard/overview" element={<Overview />} />
+          <Route path="/dashboard/analytics" element={<Analytics />} />
         <Route exact path="/manage-role" element={<ManageRole />} />
         <Route exact path="/manage-users" element={<ManagerUsers />} />
         <Route exact path="/manage-hotels" element={<ManageHotels />} />

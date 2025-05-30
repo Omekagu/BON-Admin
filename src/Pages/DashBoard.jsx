@@ -1,32 +1,33 @@
-import React, { useState } from 'react';
-import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
-import UserTable from '../Components/UserTable';
-import { DashboardChart } from '../Components/DashboardChart';
+import React, { useState } from 'react'
+import Header from '../Components/Header'
+import Sidebar from '../Components/Sidebar'
+import UserTable from '../Components/UserTable'
+import { DashboardChart } from '../Components/DashboardChart'
 
 const DashBoard = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar default open
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
-  // Toggle Sidebar Function
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  const toggleSidebar = () => setIsSidebarOpen(prev => !prev)
+
+  // Responsive: collapse sidebar on small screens
+  // You can use a media query hook or CSS only
   return (
-    <div className="dashboard">
-      <div className="dashboard__sidebar">
-        {/* sidebar */}
-        <Sidebar isOpen={isSidebarOpen} />
+    <div className='dashboard'>
+      <div className='dashboard__sidebar'>
+        <Sidebar
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+        />
       </div>
-      <div className={`dashboard__mainboard ${isSidebarOpen ? "shifted" : ""}`}>
-        {/* Header section */}
+      <div className={`dashboard__mainboard ${isSidebarOpen ? '' : 'shifted'}`}>
         <Header toggleSidebar={toggleSidebar} />
-        <div className="dashboard__content">
-          <DashboardChart/>
-          <UserTable/>
-        </div>
+        <div className='dashboard__content'>
+          <DashboardChart />
+          {/* <UserTable /> */}
         </div>
       </div>
-  );
-};
+    </div>
+  )
+}
 
-export default DashBoard;
+export default DashBoard

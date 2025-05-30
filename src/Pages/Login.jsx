@@ -26,17 +26,14 @@ const Login = () => {
     setLoading(true)
 
     try {
-      const res = await axios.post('http://10.0.1.20:5001/admin/login', {
+      const res = await axios.post('http://10.0.1.27:5001/admin/login', {
         email,
         password
       })
       console.log('Login Success:', res.data)
-
       const token = res.data.token
       localStorage.setItem('token', token)
-
       toast.success('Login successful!', { position: 'top-right' })
-
       navigate('/dashboard') // Redirect after login
     } catch (err) {
       console.error('Login Error:', err)

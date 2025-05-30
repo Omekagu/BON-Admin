@@ -1,0 +1,246 @@
+.customer-schedule {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.03);
+  padding: 1.3rem 1.3rem 1.9rem 1.3rem;
+  margin: 1.1rem 0;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+
+  &__header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.7rem;
+    h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #232323;
+      margin: 0;
+    }
+  }
+
+  &__seeall {
+    font-size: 0.97rem;
+    color: #7c3aed;
+    text-decoration: none;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__main-row {
+    display: flex;
+    gap: 1.2rem;
+    width: 100%;
+    @media (max-width: 900px) {
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+  }
+
+  &__summary {
+    min-width: 220px;
+    max-width: 260px;
+    background: #f6f9fb;
+    border-radius: 12px;
+    padding: 1.1rem 1.1rem 1.5rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+
+    @media (max-width: 600px) {
+      min-width: unset;
+      max-width: unset;
+      width: 100%;
+      border-radius: 8px;
+      padding: 0.8rem 0.7rem;
+    }
+  }
+
+  &__count {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #232323;
+    margin-bottom: 0.1rem;
+  }
+  &__label {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 0.6rem;
+  }
+
+  &__newtask {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    font-size: 1rem;
+
+    &-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      color: #444;
+    }
+
+    select {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 7px;
+      font-size: 1rem;
+      padding: 2px 12px;
+      margin-left: 0.5rem;
+      outline: none;
+    }
+  }
+
+  &__newtask-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 7px;
+    overflow: hidden;
+    input {
+      border: none;
+      flex: 1;
+      font-size: 1rem;
+      padding: 7px 9px;
+      outline: none;
+      background: #fff;
+    }
+    button {
+      background: none;
+      border: none;
+      padding: 7px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      svg {
+        display: block;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    gap: 1.2rem;
+    flex: 1;
+    @media (max-width: 900px) {
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+  }
+
+  &__card {
+    background: #f6f9fb;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    padding: 1rem 0.9rem 0.8rem 0.9rem;
+    min-width: 190px;
+    max-width: 210px;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    @media (max-width: 600px) {
+      min-width: unset;
+      max-width: unset;
+      width: 100%;
+      border-radius: 8px;
+      padding: 0.7rem 0.7rem 0.7rem 0.8rem;
+    }
+  }
+
+  &__card-header {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    margin-bottom: 0.3rem;
+  }
+
+  &__avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e5e7eb;
+  }
+
+  &__name {
+    font-size: 1.01rem;
+    font-weight: 700;
+    color: #232323;
+  }
+
+  &__role {
+    font-size: 0.96rem;
+    color: #888;
+    font-weight: 500;
+  }
+
+  &__card-task {
+    font-size: 0.97rem;
+    color: #444;
+    margin-bottom: 0.1rem;
+    .customer-schedule__taskid,
+    .customer-schedule__room {
+      font-size: 0.94rem;
+      color: #7c3aed;
+      font-weight: 600;
+    }
+    .customer-schedule__desc {
+      color: #888;
+      font-size: 0.97rem;
+      margin-top: 0.1rem;
+    }
+  }
+
+  &__status {
+    margin-top: 0.4rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.97rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 5px 12px;
+    width: fit-content;
+
+    &--completed {
+      background: #d1fae5;
+      color: #059669;
+      .customer-schedule__status-dot {
+        background: #059669;
+      }
+    }
+    &--not {
+      background: #f3f4f6;
+      color: #555;
+      .customer-schedule__status-dot {
+        background: #6b7280;
+      }
+    }
+  }
+
+  &__status-dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    margin-right: 7px;
+    vertical-align: middle;
+  }
+}

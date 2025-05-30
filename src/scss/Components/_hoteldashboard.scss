@@ -1,0 +1,212 @@
+.hotel-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
+  padding: 1.3rem 1.2rem 2rem 1.2rem;
+  background: #f6f9fb;
+  min-height: 100vh;
+
+  &__row {
+    display: flex;
+    gap: 1.6rem;
+    width: 100%;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+  }
+
+  &__overview {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.03);
+    padding: 1.7rem 2rem 1.4rem 2rem;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    h3 {
+      font-size: 1.18rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #232323;
+    }
+
+    @media (max-width: 600px) {
+      padding: 1.1rem 0.7rem;
+      border-radius: 11px;
+    }
+  }
+
+  &__stats {
+    display: flex;
+    gap: 1.1rem;
+
+    @media (max-width: 800px) {
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+  }
+
+  &__stat {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.1rem 1.7rem 1.1rem 1.1rem;
+    border-radius: 10px;
+    min-width: 130px;
+    flex: 1 1 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+
+    @media (max-width: 600px) {
+      padding: 0.7rem 1.2rem 0.7rem 0.8rem;
+      border-radius: 7px;
+      min-width: unset;
+    }
+  }
+
+  &__stat-icon {
+    font-size: 2rem;
+    opacity: 0.85;
+    margin-right: 0.3rem;
+  }
+
+  &__stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #232323;
+  }
+
+  &__stat-label {
+    font-size: 1rem;
+    color: #888;
+    margin-top: 0.1rem;
+  }
+
+  &__feedback {
+    flex: 2;
+    background: #a85635;
+    border-radius: 18px;
+    min-width: 260px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.03);
+
+    @media (max-width: 900px) {
+      min-width: unset;
+    }
+    @media (max-width: 600px) {
+      border-radius: 11px;
+    }
+  }
+
+  &__feedback-inner {
+    padding: 2.2rem 2rem 1.7rem 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+
+    @media (max-width: 600px) {
+      padding: 1.2rem 1rem;
+    }
+  }
+
+  &__feedback-title {
+    font-size: 1.13rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.01em;
+  }
+
+  &__feedback-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+  }
+
+  &__feedback-desc {
+    font-size: 1.02rem;
+    color: #e0e7ff;
+    font-weight: 400;
+    margin-bottom: 0.7rem;
+  }
+
+  &__feedback-image {
+    position: absolute;
+    right: 1.2rem;
+    bottom: 0.7rem;
+    width: 63px;
+    height: 63px;
+    background: url('https://cdn-icons-png.flaticon.com/512/747/747376.png')
+      no-repeat center/contain;
+    opacity: 0.27;
+    @media (max-width: 600px) {
+      width: 38px;
+      height: 38px;
+      right: 0.5rem;
+      bottom: 0.3rem;
+    }
+  }
+
+  &__row--charts {
+    margin-top: 0.9rem;
+    gap: 1.6rem;
+    @media (max-width: 900px) {
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+  }
+
+  &__chart-box {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.03);
+    padding: 1.2rem 1.5rem 1.5rem 1.2rem;
+    flex: 1;
+    min-width: 290px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    @media (max-width: 600px) {
+      border-radius: 11px;
+      padding: 0.7rem 0.5rem 1.1rem 0.5rem;
+      min-width: unset;
+    }
+  }
+
+  &__chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.08rem;
+    color: #232323;
+    margin-bottom: 0.5rem;
+
+    select {
+      font-size: 1rem;
+      color: #232323;
+      background: #f6f9fb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 4px 12px;
+      outline: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}

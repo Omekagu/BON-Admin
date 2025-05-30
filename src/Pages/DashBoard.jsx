@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Header from '../Components/Header'
 import Sidebar from '../Components/Sidebar'
-import UserTable from '../Components/UserTable'
-import { DashboardChart } from '../Components/DashboardChart'
+import HotelDashboard from '../Components/HotelDashboard'
+import CustomerSchedule from '../Components/CustomerSchedule'
 
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
@@ -22,7 +22,8 @@ const DashBoard = () => {
       <div className={`dashboard__mainboard ${isSidebarOpen ? '' : 'shifted'}`}>
         <Header toggleSidebar={toggleSidebar} />
         <div className='dashboard__content'>
-          <DashboardChart />
+          <HotelDashboard />
+          <CustomerSchedule />
           {/* <UserTable /> */}
         </div>
       </div>

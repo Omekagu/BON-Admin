@@ -17,6 +17,8 @@ const Header = ({ toggleSidebar }) => {
   const pageTitles = {
     '/': 'Login',
     '/dashboard': 'DashBoard',
+    '/dashboard/overview': 'Overview',
+    '/dashboard/analytics': 'Analytics',
     '/manage-role': 'ManageRole',
     '/manage-users': 'ManagerUsers',
     '/manage-user/active': 'Active Users',

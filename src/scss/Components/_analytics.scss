@@ -1,8 +1,8 @@
 .dashboard-dark-root {
-  background: linear-gradient(110deg, #23243a 80%, #292b42 100%);
+  background: linear-gradient(110deg, #eee 80%, #292b42 100%);
   min-height: 100vh;
   padding: 1.5rem 1.8rem 1.5rem 1.8rem;
-  color: #fff;
+  color: #000;
   .dashboard-dark-top {
     margin-bottom: 1.5rem;
     .dashboard-dark-kpi {
@@ -34,19 +34,19 @@
       }
       &.kpi-orange {
         background: linear-gradient(90deg, #ff835e 65%, #fdba4f 100%);
-        color: #fff;
+        color: #000;
       }
       &.kpi-blue {
         background: linear-gradient(90deg, #4f8cff 65%, #7ad7fe 100%);
-        color: #fff;
+        color: #000;
       }
       &.kpi-purple {
         background: linear-gradient(90deg, #6c63ff 65%, #9d8efe 100%);
-        color: #fff;
+        color: #000;
       }
       &.kpi-green {
         background: linear-gradient(90deg, #4ade80 65%, #23d3d3 100%);
-        color: #fff;
+        color: #000;
       }
     }
   }
@@ -54,14 +54,14 @@
     margin-bottom: 1.5rem;
   }
   .dashboard-dark-panel {
-    background: #23243a;
+    background: #706f6f;
     border-radius: 18px;
     box-shadow: 0 2px 8px 0 #18193a0d;
     padding: 0.2rem 0.2rem 0.2rem 0.2rem;
     min-height: 260px;
     .dashboard-dark-date-btn {
       background: #353554 !important;
-      color: #fff !important;
+      color: #000 !important;
       border-radius: 8px !important;
       font-size: 0.97rem;
       font-weight: 600;
@@ -88,7 +88,7 @@
     }
     .dashboard-dark-tab-btn {
       background: #353554 !important;
-      color: #fff !important;
+      color: #000 !important;
       border-radius: 8px !important;
       font-size: 0.97rem;
       font-weight: 600;
@@ -96,7 +96,7 @@
       box-shadow: none !important;
       &.selected {
         background: #fdba4f !important;
-        color: #23243a !important;
+        color: #eee !important;
       }
     }
     .dashboard-dark-pie-center {
@@ -109,7 +109,7 @@
     }
     .dashboard-dark-segment-btn {
       background: #353554 !important;
-      color: #fff !important;
+      color: #000 !important;
       border-radius: 8px !important;
       font-size: 0.93rem;
       font-weight: 600;
@@ -125,13 +125,13 @@
       margin-bottom: 0.2rem;
     }
     .dashboard-dark-report-label {
-      color: #fff;
+      color: #000;
       font-size: 0.88rem;
       font-weight: 500;
     }
     .dashboard-dark-generate-btn {
       background: linear-gradient(90deg, #fdba4f 70%, #ff835e 120%);
-      color: #23243a !important;
+      color: #eee !important;
       border-radius: 10px;
       font-weight: 700;
       font-size: 1.03rem;
@@ -141,13 +141,13 @@
     }
     .dashboard-dark-helpdesk-panel {
       background: linear-gradient(90deg, #ff835e 60%, #fdba4f 120%);
-      color: #fff;
+      color: #000;
       .dashboard-dark-help-links {
         display: flex;
         gap: 1.7rem;
         margin-bottom: 0.8rem;
         a.dashboard-dark-help-link {
-          color: #fff;
+          color: #000;
           font-weight: 700;
           font-size: 1.03rem;
           display: block;

@@ -147,7 +147,7 @@ export default function AnalyticsDashboard () {
                 alignItems='center'
                 mb={1}
               >
-                <Typography fontWeight={700} color='white'>
+                <Typography fontWeight={700} color='#000'>
                   Latest Hotel Bookings
                 </Typography>
                 <Chip

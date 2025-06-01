@@ -246,7 +246,7 @@ export default function BookingOrder () {
   )
 
   return (
-    <Box sx={{ p: { xs: 1, sm: 2 }, bgcolor: '#f9fbfc', minHeight: '100vh' }}>
+    <Box sx={{ p: { xs: 1, sm: 2 }, bgcolor: '#eee', minHeight: '100vh' }}>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={2}
@@ -254,8 +254,8 @@ export default function BookingOrder () {
         justifyContent='space-between'
         sx={{ mb: 2 }}
       >
-        <Typography variant='h5' fontWeight={600}>
-          Orders
+        <Typography variant='h5' fontWeight={300} fontSize={15}>
+          Bookings
         </Typography>
         <Stack direction='row' spacing={1}>
           <TextField
@@ -269,14 +269,14 @@ export default function BookingOrder () {
                   <SearchIcon color='action' />
                 </InputAdornment>
               ),
-              sx: { bgcolor: '#fff', borderRadius: 1, minWidth: 220 }
+              sx: { bgcolor: '#eee', borderRadius: 1, minWidth: 220 }
             }}
           />
           <TextField
             size='small'
             select
             defaultValue=''
-            sx={{ minWidth: 130, bgcolor: '#fff', borderRadius: 1 }}
+            sx={{ minWidth: 130, bgcolor: '#eee', borderRadius: 1 }}
           >
             <MenuItem value=''>Date range</MenuItem>
             <MenuItem value='today'>Today</MenuItem>
@@ -286,7 +286,7 @@ export default function BookingOrder () {
             size='small'
             select
             defaultValue=''
-            sx={{ minWidth: 110, bgcolor: '#fff', borderRadius: 1 }}
+            sx={{ minWidth: 110, bgcolor: '#eee', borderRadius: 1 }}
           >
             <MenuItem value=''>Status</MenuItem>
             <MenuItem value='booked'>Booked</MenuItem>
@@ -296,7 +296,7 @@ export default function BookingOrder () {
             size='small'
             select
             defaultValue=''
-            sx={{ minWidth: 140, bgcolor: '#fff', borderRadius: 1 }}
+            sx={{ minWidth: 140, bgcolor: '#eee', borderRadius: 1 }}
           >
             <MenuItem value=''>Department</MenuItem>
             <MenuItem value='oslo'>Oslo</MenuItem>
@@ -306,7 +306,7 @@ export default function BookingOrder () {
             variant='outlined'
             sx={{
               textTransform: 'none',
-              bgcolor: '#fff',
+              bgcolor: '#eee',
               borderRadius: 1,
               px: 1.5,
               minWidth: 40
@@ -317,7 +317,7 @@ export default function BookingOrder () {
           </Button>
           <Button
             variant='contained'
-            color='success'
+            // color='success'
             startIcon={<AddIcon />}
             sx={{
               borderRadius: 1,
@@ -332,7 +332,7 @@ export default function BookingOrder () {
       </Stack>
       <Box
         sx={{
-          bgcolor: '#fff',
+          bgcolor: '#eee',
           borderRadius: 3,
           boxShadow: '0 2px 8px 0 rgba(0,0,0,0.03)',
           p: { xs: 1, sm: 2 }

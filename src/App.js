@@ -22,13 +22,13 @@ import UpdateSystem from './Pages/UpdateSystem'
 import ManagerUsers from './Pages/ManageUsers'
 import PrivateRoute from './Pages/PrivateRoute'
 import { Overview } from './Pages/dashboard/Overview'
-import { Analytics } from './Pages/dashboard/Analytics'
 import Reservations from './Pages/Reservations'
 import ManageRooms from './Pages/ManageRooms'
 import StaffSection from './Pages/StaffSection'
 import Reports from './Pages/Reports'
 import GuestReviews from './Pages/GuestReviews'
 import ActiveUsers from './Pages/manage-users/ActiveUsers'
+import Analytics from './Pages/dashboard/Analytics'
 
 function App () {
   return (
@@ -38,7 +38,7 @@ function App () {
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<DashBoard />} />
         </Route>
-        <Route path='/dashboard/overview' element={<Overview />} />
+        <Route path='/dashboard/analytics' element={<Analytics />} />
         <Route path='/dashboard/analytics' element={<Analytics />} />
         <Route exact path='/Reservations' element={<Reservations />} />
         <Route exact path='/manage-rooms' element={<ManageRooms />} />

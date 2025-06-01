@@ -1,0 +1,185 @@
+.dashboard-dark-root {
+  background: linear-gradient(110deg, #23243a 80%, #292b42 100%);
+  min-height: 100vh;
+  padding: 1.5rem 1.8rem 1.5rem 1.8rem;
+  color: #fff;
+  .dashboard-dark-top {
+    margin-bottom: 1.5rem;
+    .dashboard-dark-kpi {
+      border-radius: 20px;
+      box-shadow: 0 2px 16px 0 rgba(253, 186, 79, 0.04);
+      position: relative;
+      min-height: 108px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 1rem;
+      .dashboard-dark-kpi-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 0.3rem;
+      }
+      .dashboard-dark-kpi-label {
+        font-size: 1.09rem;
+        color: #f6f9ffcc;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .dashboard-dark-kpi-icon {
+        position: absolute;
+        top: 1.2rem;
+        right: 1.3rem;
+        opacity: 0.18;
+        font-size: 49px !important;
+      }
+      &.kpi-orange {
+        background: linear-gradient(90deg, #ff835e 65%, #fdba4f 100%);
+        color: #fff;
+      }
+      &.kpi-blue {
+        background: linear-gradient(90deg, #4f8cff 65%, #7ad7fe 100%);
+        color: #fff;
+      }
+      &.kpi-purple {
+        background: linear-gradient(90deg, #6c63ff 65%, #9d8efe 100%);
+        color: #fff;
+      }
+      &.kpi-green {
+        background: linear-gradient(90deg, #4ade80 65%, #23d3d3 100%);
+        color: #fff;
+      }
+    }
+  }
+  .dashboard-dark-main {
+    margin-bottom: 1.5rem;
+  }
+  .dashboard-dark-panel {
+    background: #23243a;
+    border-radius: 18px;
+    box-shadow: 0 2px 8px 0 #18193a0d;
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    min-height: 260px;
+    .dashboard-dark-date-btn {
+      background: #353554 !important;
+      color: #fff !important;
+      border-radius: 8px !important;
+      font-size: 0.97rem;
+      font-weight: 600;
+      min-width: 90px;
+      margin-right: 0.4rem;
+      margin-left: 0.1rem;
+      box-shadow: none !important;
+    }
+    .dashboard-dark-hotel-date {
+      color: #fdba4f;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 0.4rem;
+    }
+    .dashboard-dark-hotel-ago {
+      color: #b1b6c6;
+      font-size: 11px;
+      margin-left: 0.4rem;
+    }
+    .dashboard-dark-chart-tabs {
+      display: flex;
+      gap: 0.7rem;
+      margin-bottom: 0.7rem;
+    }
+    .dashboard-dark-tab-btn {
+      background: #353554 !important;
+      color: #fff !important;
+      border-radius: 8px !important;
+      font-size: 0.97rem;
+      font-weight: 600;
+      min-width: 70px;
+      box-shadow: none !important;
+      &.selected {
+        background: #fdba4f !important;
+        color: #23243a !important;
+      }
+    }
+    .dashboard-dark-pie-center {
+      position: absolute;
+      left: 50%;
+      top: 53%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      pointer-events: none;
+    }
+    .dashboard-dark-segment-btn {
+      background: #353554 !important;
+      color: #fff !important;
+      border-radius: 8px !important;
+      font-size: 0.93rem;
+      font-weight: 600;
+      min-width: 60px;
+      box-shadow: none !important;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+    .dashboard-dark-report-title {
+      color: #fdba4f;
+      font-size: 1.19rem;
+      font-weight: 800;
+      margin-bottom: 0.2rem;
+    }
+    .dashboard-dark-report-label {
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .dashboard-dark-generate-btn {
+      background: linear-gradient(90deg, #fdba4f 70%, #ff835e 120%);
+      color: #23243a !important;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1.03rem;
+      box-shadow: none !important;
+      padding: 3px 18px;
+      margin-top: 0.5rem;
+    }
+    .dashboard-dark-helpdesk-panel {
+      background: linear-gradient(90deg, #ff835e 60%, #fdba4f 120%);
+      color: #fff;
+      .dashboard-dark-help-links {
+        display: flex;
+        gap: 1.7rem;
+        margin-bottom: 0.8rem;
+        a.dashboard-dark-help-link {
+          color: #fff;
+          font-weight: 700;
+          font-size: 1.03rem;
+          display: block;
+          margin-bottom: 0.3rem;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .dashboard-dark-root {
+    padding: 0.5rem;
+    .dashboard-dark-panel {
+      min-height: 200px;
+      padding: 0.3rem;
+    }
+  }
+}
+@media (max-width: 700px) {
+  .dashboard-dark-root {
+    padding: 0.2rem;
+    .dashboard-dark-top .dashboard-dark-kpi {
+      border-radius: 14px;
+      min-height: 78px;
+      padding-left: 0.5rem;
+    }
+    .dashboard-dark-panel {
+      border-radius: 12px;
+      min-height: 110px;
+      padding: 0.1rem;
+    }
+  }
+}

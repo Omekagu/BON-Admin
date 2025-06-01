@@ -1,0 +1,49 @@
+.MuiDataGrid-root {
+  background: #fff;
+  border-radius: 1rem;
+  font-size: 16px;
+}
+
+.MuiDataGrid-columnHeaders {
+  background: #f4f6fa;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.MuiDataGrid-cell {
+  font-size: 0.97rem;
+}
+
+.row-highlight {
+  background: rgba(255, 186, 73, 0.13) !important;
+}
+
+@media (max-width: 1100px) {
+  .MuiDataGrid-root {
+    font-size: 14px;
+  }
+  .MuiDataGrid-columnHeaders {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .MuiDataGrid-root {
+    font-size: 13px;
+  }
+  .MuiDataGrid-columnHeaders {
+    font-size: 0.9rem;
+  }
+  .MuiDataGrid-cell {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .MuiDataGrid-root {
+    font-size: 12px;
+  }
+  .MuiDataGrid-columnHeaders {
+    font-size: 0.85rem;
+  }
+}

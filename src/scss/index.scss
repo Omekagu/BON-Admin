@@ -3,17 +3,18 @@
 @import './Base/variable';
 
 // component
-@import './Components/button.scss';
-@import './Components/sidebar.scss';
-@import './Components/input.scss';
+@import './Components/button';
+@import './Components/sidebar';
+@import './Components/input';
 @import './Components/header';
 @import './Components/hoteldashboard';
-@import './Components/userTable.scss';
+@import './Components/userTable';
+@import './Components/bookingOrder';
 @import './Components/tableContainer';
 @import './Components/PropertyList';
 @import './Components/UserManagement';
 @import './Components//customerSchedule';
 
 // Pages
-@import './page/login.scss';
-@import './page/dashboard.scss';
+@import './page/login';
+@import './page/dashboard';

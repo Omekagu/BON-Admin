@@ -28,6 +28,7 @@ import ManageRooms from './Pages/ManageRooms'
 import StaffSection from './Pages/StaffSection'
 import Reports from './Pages/Reports'
 import GuestReviews from './Pages/GuestReviews'
+import ActiveUsers from './Pages/manage-users/ActiveUsers'
 
 function App () {
   return (
@@ -39,22 +40,15 @@ function App () {
         </Route>
         <Route path='/dashboard/overview' element={<Overview />} />
         <Route path='/dashboard/analytics' element={<Analytics />} />
-
         <Route exact path='/Reservations' element={<Reservations />} />
         <Route exact path='/manage-rooms' element={<ManageRooms />} />
         <Route exact path='/staff-scetion' element={<StaffSection />} />
         <Route exact path='/Reports' element={<Reports />} />
         <Route exact path='/guest-reviews' element={<GuestReviews />} />
         <Route exact path='/Reservations' element={<Reservations />} />
-        <Route exact path='/Reservations' element={<Reservations />} />
-        <Route exact path='/Reservations' element={<Reservations />} />
-        <Route exact path='/Reservations' element={<Reservations />} />
-        <Route exact path='/Reservations' element={<Reservations />} />
-        <Route exact path='/Reservations' element={<Reservations />} />
-        <Route exact path='/manage-role' element={<ManageRole />} />
         <Route exact path='/manage-role' element={<ManageRole />} />
         <Route exact path='/manage-users' element={<ManagerUsers />} />
-        <Route exact path='/manage-users' element={<ManagerUsers />} />
+        <Route exact path='/manage-user/active' element={<ActiveUsers />} />
         <Route exact path='/manage-hotels' element={<ManageHotels />} />
         <Route exact path='/schedule' element={<Schedule />} />
         <Route exact path='/tickets' element={<Tickets />} />

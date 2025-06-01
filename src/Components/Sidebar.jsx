@@ -91,7 +91,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       category: 'USER MANAGEMENT',
       dropdown: true,
       submenu: [
-        { path: '/manage-users/active', name: 'Active Users' },
+        { path: '/manage-user/active', name: 'Active Users' },
         { path: '/manage-users/pending', name: 'Pending Users' },
         { path: '/manage-users/banned', name: 'Banned Users' }
       ]

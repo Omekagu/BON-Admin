@@ -4,263 +4,294 @@ import {
   Button,
   Stack,
   TextField,
-  MenuItem,
   Typography,
   Chip,
-  InputAdornment
+  InputAdornment,
+  Avatar,
+  Tooltip,
+  useTheme,
+  CircularProgress,
+  alpha
 } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import SearchIcon from '@mui/icons-material/Search'
-import FilterListIcon from '@mui/icons-material/FilterList'
-import AddIcon from '@mui/icons-material/Add'
-import PrintIcon from '@mui/icons-material/Print'
-import FileDownloadIcon from '@mui/icons-material/FileDownload'
+import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded'
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
+import PrintRoundedIcon from '@mui/icons-material/PrintRounded'
+import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded'
+import axios from 'axios'
+import { useSnackbar } from 'notistack'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import { styled } from '@mui/material/styles'
+import '@fontsource/plus-jakarta-sans/400.css'
+import '@fontsource/plus-jakarta-sans/700.css'
 
-const statusColors = {
-  Cancelled: { color: 'error', label: 'Cancelled' },
-  Booked: { color: 'info', label: 'Booked' },
-  'In Cart': { color: 'warning', label: 'In Cart' },
-  Closed: { color: 'default', label: 'Closed' },
-  Dropped: { color: 'default', label: 'Dropped' },
-  Test: { color: 'secondary', label: 'Test' },
-  Request: { color: 'warning', label: 'Request' }
-}
-const deliveryStatusColors = {
-  Cancelled: { color: 'error', label: 'Cancelled' },
-  'Ready to pickup': { color: 'success', label: 'Ready to pickup' },
-  Delayed: { color: 'warning', label: 'Delayed' },
-  'Picked up': { color: 'success', label: 'Picked up' },
-  'In transport': { color: 'info', label: 'In transport' },
-  'In checking': { color: 'secondary', label: 'In checking' },
-  Returned: { color: 'secondary', label: 'Returned' }
+// For pretty date display
+dayjs.extend(relativeTime)
+
+const roleColors = {
+  user: 'info',
+  admin: 'success',
+  superadmin: 'secondary'
 }
 
-const orderRows = [
-  {
-    id: 1,
-    ref: 'QH29',
-    created: '15 Jul 2020 16:00',
-    customer: 'Peter Kristiansen',
-    product: 'Orbea Orca M30',
-    start: '08 Aug 2020 14:00',
-    end: '12 Aug 2020 09:00',
-    distribution: 'Grubbgata 1 Oslo',
-    status: 'Cancelled',
-    deliveryStatus: 'Cancelled',
-    price: '800.00 NOK',
-    rowBg: ''
+const FuturisticDataGrid = styled(DataGrid)(({ theme }) => ({
+  borderRadius: 16,
+  border: 'none',
+  background: theme.palette.background.paper,
+  boxShadow: '0 6px 32px 0 rgba(30,41,59,0.08)',
+  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  '& .MuiDataGrid-columnHeaders': {
+    background: 'linear-gradient(90deg, #f8fafc 0%, #e9e9ff 100%)',
+    fontWeight: 700,
+    fontSize: '1.10rem',
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    letterSpacing: 0.1
   },
-  {
-    id: 2,
-    ref: 'V5B8',
-    created: '15 Jul 2020 12:00',
-    customer: 'Ola Nordmann',
-    product: 'Pinarello Gan Disk',
-    start: '07 Aug 2020 12:00',
-    end: '14 Aug 2020 12:00',
-    distribution: 'Avdeling 16 Sydbygde',
-    status: 'Booked',
-    deliveryStatus: 'Ready to pickup',
-    price: '1 600.00 NOK',
-    rowBg: ''
+  '& .MuiDataGrid-row': {
+    fontWeight: 500,
+    fontSize: '1.00rem',
+    transition: 'background 0.15s',
+    '&:hover': {
+      background: alpha(theme.palette.primary.light, 0.09)
+    }
   },
-  {
-    id: 3,
-    ref: 'LH44',
-    created: '14 Jul 2020 20:16',
-    customer: 'Viggo Aukland',
-    product: 'S-Works Tarmac SL7',
-    start: '05 Aug 2020 10:00',
-    end: '08 Aug 2020 12:00',
-    distribution: 'Grubbgata 1 Oslo',
-    status: 'Booked',
-    deliveryStatus: 'Delayed',
-    price: '645.00 NOK',
-    rowBg: 'highlight'
+  '& .MuiDataGrid-footerContainer': {
+    background: 'linear-gradient(90deg, #f8fafc 0%, #e9e9ff 100%)',
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
+    fontWeight: 500,
+    letterSpacing: 0.1
   },
-  {
-    id: 4,
-    ref: 'TS49',
-    created: '13 Jul 2020 07:24',
-    customer: 'Merethe Meiling',
-    product: 'Elite Direto XR, Schwalbe Ins...',
-    start: '06 Aug 2020 09:00',
-    end: '-',
-    distribution: 'Avdeling 16 Sydbygde',
-    status: 'In Cart',
-    deliveryStatus: '',
-    price: '199.99 NOK',
-    rowBg: ''
-  },
-  {
-    id: 5,
-    ref: 'QEBO',
-    created: '10 Jul 2020 20:00',
-    customer: 'Edvin Jonassen',
-    product: 'FELT SPORT-E 50',
-    start: '05 Aug 2020 07:00',
-    end: '-',
-    distribution: 'Grubbgata 1 Oslo',
-    status: 'Closed',
-    deliveryStatus: 'Picked up',
-    price: '399.00 NOK',
-    rowBg: ''
-  },
-  {
-    id: 6,
-    ref: 'ZM94',
-    created: '08 Jul 2020 16:12',
-    customer: 'Admin',
-    product: 'BH Atom 29',
-    start: '01 Aug 2020 07:00',
-    end: '-',
-    distribution: 'Grubbgata 1 Oslo',
-    status: 'Dropped',
-    deliveryStatus: 'Cancelled',
-    price: '485.00 NOK',
-    rowBg: ''
-  },
-  {
-    id: 7,
-    ref: 'MV33',
-    created: '08 Jul 2020 11:01',
-    customer: 'Thorbjorn Bernsen',
-    product: 'HJC Atara, Abus Hyban+',
-    start: '31 Jul 2020 10:00',
-    end: '-',
-    distribution: 'Grubbgata 1 Oslo',
-    status: 'Booked',
-    deliveryStatus: 'Delayed',
-    price: '485.00 NOK',
-    rowBg: 'highlight'
-  },
-  {
-    id: 8,
-    ref: 'AA23',
-    created: '08 Jul 2020 09:43',
-    customer: 'Admin',
-    product: 'Shimano 105 ST-R7000',
-    start: '29 Jul 2020 06:15',
-    end: '-',
-    distribution: 'Ekebersgveien 65',
-    status: 'Test',
-    deliveryStatus: 'Returned',
-    price: '399.00 NOK',
-    rowBg: ''
-  },
-  {
-    id: 9,
-    ref: 'GR88',
-    created: '07 Jul 2020 13:54',
-    customer: 'Per Thue',
-    product: 'EYEN Kort 2-Pack',
-    start: '26 Jul 2020 12:00',
-    end: '-',
-    distribution: 'Avdeling 16 Sydbygde',
-    status: 'Request',
-    deliveryStatus: 'In transport',
-    price: '512.00 NOK',
-    rowBg: ''
-  },
-  {
-    id: 10,
-    ref: 'NL06',
-    created: '07 Jul 2020 15:54',
-    customer: 'Hallgrim Haukland',
-    product: 'S-Works Shiv TT Disc',
-    start: '24 Jul 2020 12:00',
-    end: '-',
-    distribution: 'Grubbgata 1 Oslo',
-    status: 'Booked',
-    deliveryStatus: 'In checking',
-    price: '360.00 NOK',
-    rowBg: ''
+  '& .MuiDataGrid-cell': {
+    alignItems: 'center'
   }
-]
+}))
 
 const columns = [
-  { field: 'ref', headerName: 'REF.', width: 90 },
-  { field: 'created', headerName: 'CREATED', width: 140 },
-  { field: 'customer', headerName: 'CUSTOMER', width: 150 },
   {
-    field: 'product',
-    headerName: 'PRODUCTS',
-    width: 190,
-    renderCell: params => <span title={params.value}>{params.value}</span>
+    field: 'profileImage',
+    headerName: '',
+    width: 60,
+    renderCell: params =>
+      params.value ? (
+        <Tooltip title={params.row.firstname + ' ' + params.row.surname}>
+          <Avatar
+            src={params.value}
+            alt={params.row.firstname}
+            sx={{ width: 36, height: 36, boxShadow: 2 }}
+          />
+        </Tooltip>
+      ) : (
+        <Avatar sx={{ width: 36, height: 36, boxShadow: 2 }}>
+          {(params.row.firstname?.[0] ?? '?').toUpperCase()}
+        </Avatar>
+      ),
+    sortable: false,
+    filterable: false,
+    disableExport: true
   },
-  { field: 'start', headerName: 'START TIME', width: 140 },
-  { field: 'end', headerName: 'END TIME', width: 120 },
-  { field: 'distribution', headerName: 'DISTRIBUTION', width: 160 },
   {
-    field: 'status',
-    headerName: 'STATUS',
-    width: 120,
+    field: 'firstname',
+    headerName: 'First Name',
+    minWidth: 120,
+    flex: 1,
+    renderCell: params => (
+      <Typography fontWeight={600}>{params.value}</Typography>
+    )
+  },
+  {
+    field: 'surname',
+    headerName: 'Surname',
+    minWidth: 120,
+    flex: 1,
+    renderCell: params => (
+      <Typography fontWeight={600}>{params.value}</Typography>
+    )
+  },
+  {
+    field: 'email',
+    headerName: 'Email',
+    minWidth: 200,
+    flex: 2,
+    renderCell: params => (
+      <Tooltip title={params.value}>
+        <span
+          style={{
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
+        >
+          {params.value}
+        </span>
+      </Tooltip>
+    )
+  },
+  {
+    field: 'phoneNumber',
+    headerName: 'Phone',
+    minWidth: 140,
+    flex: 1
+  },
+  {
+    field: 'userCountry',
+    headerName: 'Country',
+    minWidth: 120,
+    flex: 1
+  },
+  {
+    field: 'role',
+    headerName: 'Role',
+    minWidth: 110,
+    flex: 1,
     renderCell: params =>
       params.value ? (
         <Chip
           size='small'
-          label={statusColors[params.value]?.label || params.value}
-          color={statusColors[params.value]?.color || 'default'}
-          variant={
-            ['Cancelled', 'Closed', 'Dropped'].includes(params.value)
-              ? 'outlined'
-              : 'filled'
-          }
-          sx={{ fontWeight: 600, fontSize: 13 }}
+          label={params.value.charAt(0).toUpperCase() + params.value.slice(1)}
+          color={roleColors[params.value] || 'default'}
+          sx={{ fontWeight: 600, fontSize: 13, letterSpacing: 0.2 }}
+          variant={params.value === 'user' ? 'outlined' : 'filled'}
         />
       ) : null
   },
   {
-    field: 'deliveryStatus',
-    headerName: 'DELIVERY STATUS',
-    width: 150,
+    field: 'createdAt',
+    headerName: 'Created',
+    minWidth: 170,
+    flex: 1,
+    valueGetter: params =>
+      params.value ? dayjs(params.value).format('DD MMM YYYY, HH:mm') : '',
     renderCell: params =>
       params.value ? (
-        <Chip
-          size='small'
-          label={deliveryStatusColors[params.value]?.label || params.value}
-          color={deliveryStatusColors[params.value]?.color || 'default'}
-          variant={params.value === 'Cancelled' ? 'outlined' : 'filled'}
-          sx={{ fontWeight: 600, fontSize: 13 }}
-        />
-      ) : null
+        <Tooltip title={dayjs(params.row.createdAt).fromNow()}>
+          <span>{params.value}</span>
+        </Tooltip>
+      ) : (
+        ''
+      )
   },
   {
-    field: 'price',
-    headerName: 'PRICE',
-    width: 120,
-    align: 'right',
-    headerAlign: 'right'
+    field: 'dob',
+    headerName: 'DOB',
+    minWidth: 110,
+    flex: 1,
+    valueGetter: params =>
+      params.value ? dayjs(params.value).format('DD MMM YYYY') : ''
+  },
+  {
+    field: 'gender',
+    headerName: 'Gender',
+    minWidth: 100,
+    flex: 1
+  },
+  {
+    field: 'address',
+    headerName: 'Address',
+    minWidth: 180,
+    flex: 2,
+    renderCell: params => (
+      <Tooltip title={params.value}>
+        <span
+          style={{
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
+        >
+          {params.value}
+        </span>
+      </Tooltip>
+    )
+  },
+  {
+    field: 'referralCode',
+    headerName: 'Referral',
+    minWidth: 90,
+    flex: 1
   }
 ]
 
 export default function BookingOrder () {
   const [search, setSearch] = React.useState('')
   const [pageSize, setPageSize] = React.useState(10)
+  const [rows, setRows] = React.useState([])
+  const [loading, setLoading] = React.useState(false)
+  const { enqueueSnackbar } = useSnackbar()
+  const theme = useTheme()
 
-  const filteredRows = orderRows.filter(row =>
-    [row.ref, row.customer, row.product, row.status, row.deliveryStatus]
+  React.useEffect(() => {
+    setLoading(true)
+    axios
+      .get('http://localhost:5001/user/users')
+      .then(response => {
+        const users = Array.isArray(response.data)
+          ? response.data
+          : Array.isArray(response.data.users)
+          ? response.data.users
+          : [response.data]
+        setRows(
+          users.map((user, idx) => ({
+            ...user,
+            id: user._id || idx
+          }))
+        )
+      })
+      .catch(error => {
+        enqueueSnackbar('Failed to fetch users.', { variant: 'error' })
+        setRows([])
+      })
+      .finally(() => setLoading(false))
+  }, [enqueueSnackbar])
+
+  const filteredRows = rows.filter(row =>
+    [
+      row.referralCode,
+      row.firstname,
+      row.surname,
+      row.email,
+      row.phoneNumber,
+      row.userCountry,
+      row.deviceType,
+      row.gender,
+      row.role,
+      row.address
+    ]
       .join(' ')
       .toLowerCase()
       .includes(search.toLowerCase())
   )
 
   return (
-    <Box sx={{ p: { xs: 1, sm: 2 }, bgcolor: '#eee', minHeight: '100vh' }}>
+    <Box sx={{ p: { xs: 1, sm: 3 }, bgcolor: '#f2f4f8', minHeight: '100vh' }}>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={2}
         alignItems={{ xs: 'stretch', sm: 'center' }}
         justifyContent='space-between'
-        sx={{ mb: 2 }}
+        sx={{ mb: 3 }}
       >
-        <Typography variant='h5' fontWeight={300} fontSize={15}>
-          Bookings
+        <Typography
+          variant='h4'
+          fontWeight={700}
+          fontFamily='Plus Jakarta Sans, sans-serif'
+          color={theme.palette.text.primary}
+          sx={{
+            letterSpacing: '.5px',
+            background: 'linear-gradient(90deg, #5f78ff 0%, #7c53e7 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}
+        >
+          User Directory
         </Typography>
         <Stack direction='row' spacing={1}>
           <TextField
             size='small'
-            placeholder='Search by any order parameter...'
+            placeholder='Search users...'
             value={search}
             onChange={e => setSearch(e.target.value)}
             InputProps={{
@@ -269,99 +300,77 @@ export default function BookingOrder () {
                   <SearchIcon color='action' />
                 </InputAdornment>
               ),
-              sx: { bgcolor: '#eee', borderRadius: 1, minWidth: 220 }
+              sx: { bgcolor: '#f7fafd', borderRadius: 2, minWidth: 240 }
             }}
+            autoComplete='off'
           />
-          <TextField
-            size='small'
-            select
-            defaultValue=''
-            sx={{ minWidth: 130, bgcolor: '#eee', borderRadius: 1 }}
-          >
-            <MenuItem value=''>Date range</MenuItem>
-            <MenuItem value='today'>Today</MenuItem>
-            <MenuItem value='week'>This week</MenuItem>
-          </TextField>
-          <TextField
-            size='small'
-            select
-            defaultValue=''
-            sx={{ minWidth: 110, bgcolor: '#eee', borderRadius: 1 }}
-          >
-            <MenuItem value=''>Status</MenuItem>
-            <MenuItem value='booked'>Booked</MenuItem>
-            <MenuItem value='cancelled'>Cancelled</MenuItem>
-          </TextField>
-          <TextField
-            size='small'
-            select
-            defaultValue=''
-            sx={{ minWidth: 140, bgcolor: '#eee', borderRadius: 1 }}
-          >
-            <MenuItem value=''>Department</MenuItem>
-            <MenuItem value='oslo'>Oslo</MenuItem>
-            <MenuItem value='sydbygde'>Sydbygde</MenuItem>
-          </TextField>
           <Button
             variant='outlined'
             sx={{
               textTransform: 'none',
-              bgcolor: '#eee',
-              borderRadius: 1,
+              bgcolor: '#f7fafd',
+              borderRadius: 2,
               px: 1.5,
-              minWidth: 40
+              minWidth: 40,
+              boxShadow: 'none'
             }}
-            startIcon={<FilterListIcon />}
+            color='secondary'
+            startIcon={<FilterAltRoundedIcon />}
           >
-            More filters
+            Filters
           </Button>
           <Button
             variant='contained'
-            // color='success'
-            startIcon={<AddIcon />}
+            color='primary'
+            startIcon={<AddCircleRoundedIcon />}
             sx={{
-              borderRadius: 1,
+              borderRadius: 2,
               textTransform: 'none',
-              fontWeight: 600,
-              px: 2
+              fontWeight: 700,
+              fontFamily: 'Plus Jakarta Sans, sans-serif',
+              px: 2.2,
+              background: 'linear-gradient(90deg, #6558ff 0%, #7c53e7 100%)',
+              boxShadow: '0 2px 10px 0 rgba(127, 86, 217, 0.14)'
             }}
           >
-            Create Order
+            Add User
           </Button>
         </Stack>
       </Stack>
       <Box
         sx={{
-          bgcolor: '#eee',
-          borderRadius: 3,
-          boxShadow: '0 2px 8px 0 rgba(0,0,0,0.03)',
-          p: { xs: 1, sm: 2 }
+          bgcolor: '#fff',
+          borderRadius: 4,
+          p: { xs: 1, sm: 2 },
+          boxShadow: '0 6px 32px 0 rgba(30, 41, 59, 0.08)'
         }}
       >
-        <DataGrid
+        <FuturisticDataGrid
           autoHeight
           rows={filteredRows}
           columns={columns}
-          getRowClassName={params =>
-            params.row.rowBg === 'highlight' ? 'row-highlight' : ''
-          }
           pageSize={pageSize}
-          onPageSizeChange={newPageSize => setPageSize(newPageSize)}
-          rowsPerPageOptions={[5, 10, 20]}
+          onPageSizeChange={setPageSize}
+          rowsPerPageOptions={[5, 10, 20, 50]}
+          loading={loading}
+          components={{
+            Toolbar: GridToolbar,
+            LoadingOverlay: () => (
+              <Stack
+                alignItems='center'
+                justifyContent='center'
+                sx={{ width: '100%', py: 4 }}
+              >
+                <CircularProgress color='primary' thickness={4} />
+              </Stack>
+            )
+          }}
           sx={{
-            '& .row-highlight': {
-              backgroundColor: 'rgba(255, 186, 73, 0.13)'
-            },
-            '& .MuiDataGrid-columnHeaders': {
-              bgcolor: '#f4f6fa',
-              fontWeight: 600,
-              fontSize: '1rem'
-            },
-            '& .MuiDataGrid-cell': {
-              fontSize: '0.97rem'
-            },
-            '& .MuiDataGrid-footerContainer': {
-              bgcolor: '#f4f6fa'
+            '& .MuiDataGrid-toolbarContainer': {
+              justifyContent: 'flex-end',
+              background: '#f7fafd',
+              borderTopLeftRadius: 16,
+              borderTopRightRadius: 16
             }
           }}
           disableSelectionOnClick
@@ -374,9 +383,9 @@ export default function BookingOrder () {
           sx={{
             px: 1,
             py: 1,
-            bgcolor: '#f4f6fa',
-            borderBottomLeftRadius: 12,
-            borderBottomRightRadius: 12,
+            bgcolor: '#f7fafd',
+            borderBottomLeftRadius: 16,
+            borderBottomRightRadius: 16,
             mt: 2
           }}
         >
@@ -384,16 +393,22 @@ export default function BookingOrder () {
             <Button
               variant='text'
               size='small'
-              startIcon={<PrintIcon />}
+              startIcon={<PrintRoundedIcon />}
               sx={{ textTransform: 'none' }}
+              onClick={() => window.print()}
             >
               Print
             </Button>
             <Button
               variant='text'
               size='small'
-              startIcon={<FileDownloadIcon />}
+              startIcon={<FileDownloadRoundedIcon />}
               sx={{ textTransform: 'none' }}
+              onClick={() =>
+                enqueueSnackbar('Export feature coming soon.', {
+                  variant: 'info'
+                })
+              }
             >
               Export
             </Button>

@@ -31,7 +31,7 @@ import '@fontsource/plus-jakarta-sans/700.css'
 dayjs.extend(relativeTime)
 
 const roleColors = {
-  user: 'default',
+  user: 'info',
   admin: 'success',
   superadmin: 'secondary'
 }
@@ -55,7 +55,7 @@ const FuturisticDataGrid = styled(DataGrid)(({ theme }) => ({
     fontSize: '1.00rem',
     transition: 'background 0.15s',
     '&:hover': {
-      background: alpha(theme.palette.secondary.light, 0.09)
+      background: alpha(theme.palette.primary.light, 0.09)
     }
   },
   '& .MuiDataGrid-footerContainer': {
@@ -215,7 +215,7 @@ const columns = [
   }
 ]
 
-export default function BookingOrder () {
+export default function UserTable () {
   const [search, setSearch] = React.useState('')
   const [pageSize, setPageSize] = React.useState(10)
   const [rows, setRows] = React.useState([])
@@ -266,7 +266,7 @@ export default function BookingOrder () {
   )
 
   return (
-    <Box sx={{ p: { xs: 1, sm: 3 }, bgcolor: '#ffff', minHeight: '100vh' }}>
+    <Box sx={{ p: { xs: 1, sm: 3 }, bgcolor: '#f2f4f8', minHeight: '100vh' }}>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={2}
@@ -278,10 +278,10 @@ export default function BookingOrder () {
           variant='h4'
           fontWeight={700}
           fontFamily='Plus Jakarta Sans, sans-serif'
-          color={theme.palette.text.secondary}
+          color={theme.palette.text.primary}
           sx={{
             letterSpacing: '.5px',
-            background: '#000',
+            background: 'linear-gradient(90deg, #5f78ff 0%, #7c53e7 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}
@@ -300,7 +300,7 @@ export default function BookingOrder () {
                   <SearchIcon color='action' />
                 </InputAdornment>
               ),
-              sx: { bgcolor: '#fff', borderRadius: 2, minWidth: 240 }
+              sx: { bgcolor: '#f7fafd', borderRadius: 2, minWidth: 240 }
             }}
             autoComplete='off'
           />
@@ -308,20 +308,20 @@ export default function BookingOrder () {
             variant='outlined'
             sx={{
               textTransform: 'none',
-              bgcolor: '#fff',
+              bgcolor: '#f7fafd',
               borderRadius: 2,
               px: 1.5,
               minWidth: 40,
               boxShadow: 'none'
             }}
-            color='inherit'
+            color='secondary'
             startIcon={<FilterAltRoundedIcon />}
           >
             Filters
           </Button>
           <Button
             variant='contained'
-            color='secondary'
+            color='primary'
             startIcon={<AddCircleRoundedIcon />}
             sx={{
               borderRadius: 2,
@@ -329,7 +329,7 @@ export default function BookingOrder () {
               fontWeight: 700,
               fontFamily: 'Plus Jakarta Sans, sans-serif',
               px: 2.2,
-              background: '#000',
+              background: 'linear-gradient(90deg, #6558ff 0%, #7c53e7 100%)',
               boxShadow: '0 2px 10px 0 rgba(127, 86, 217, 0.14)'
             }}
           >
@@ -361,7 +361,7 @@ export default function BookingOrder () {
                 justifyContent='center'
                 sx={{ width: '100%', py: 4 }}
               >
-                <CircularProgress color='secondary' thickness={4} />
+                <CircularProgress color='primary' thickness={4} />
               </Stack>
             )
           }}
@@ -391,7 +391,6 @@ export default function BookingOrder () {
         >
           <Stack direction='row' spacing={1}>
             <Button
-              color='inherit'
               variant='text'
               size='small'
               startIcon={<PrintRoundedIcon />}
@@ -401,7 +400,6 @@ export default function BookingOrder () {
               Print
             </Button>
             <Button
-              color='inherit'
               variant='text'
               size='small'
               startIcon={<FileDownloadRoundedIcon />}

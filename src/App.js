@@ -21,7 +21,6 @@ import Report from './Pages/Report'
 import UpdateSystem from './Pages/UpdateSystem'
 import ManagerUsers from './Pages/ManageUsers'
 import PrivateRoute from './Pages/PrivateRoute'
-import { Overview } from './Pages/dashboard/Overview'
 import Reservations from './Pages/Reservations'
 import ManageRooms from './Pages/ManageRooms'
 import StaffSection from './Pages/StaffSection'
@@ -29,6 +28,7 @@ import Reports from './Pages/Reports'
 import GuestReviews from './Pages/GuestReviews'
 import ActiveUsers from './Pages/manage-users/ActiveUsers'
 import Analytics from './Pages/dashboard/Analytics'
+import Bookings from './Pages/manage-users/Bookings'
 
 function App () {
   return (
@@ -48,7 +48,8 @@ function App () {
         <Route exact path='/Reservations' element={<Reservations />} />
         <Route exact path='/manage-role' element={<ManageRole />} />
         <Route exact path='/manage-users' element={<ManagerUsers />} />
-        <Route exact path='/manage-user/active' element={<ActiveUsers />} />
+        <Route exact path='/manage-user/users' element={<ActiveUsers />} />
+        <Route exact path='/manage-user/booking' element={<Bookings />} />
         <Route exact path='/manage-hotels' element={<ManageHotels />} />
         <Route exact path='/schedule' element={<Schedule />} />
         <Route exact path='/tickets' element={<Tickets />} />

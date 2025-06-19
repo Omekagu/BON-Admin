@@ -226,7 +226,7 @@ export default function UserTable () {
   React.useEffect(() => {
     setLoading(true)
     axios
-      .get('http://localhost:5001/user/users')
+      .get('https://bonserver-vic7.onrender.com/user/users')
       .then(response => {
         const users = Array.isArray(response.data)
           ? response.data

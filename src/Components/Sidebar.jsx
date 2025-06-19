@@ -67,6 +67,18 @@ const Sidebar = ({ isOpen, onClose }) => {
       ]
     },
     {
+      path: '/manage-users',
+      name: 'Manage Users',
+      icon: <Person />,
+      category: 'USER MANAGEMENT',
+      dropdown: true,
+      submenu: [
+        { path: '/manage-user/users', name: 'App Users' },
+        { path: '/manage-user/booking', name: 'Hotel Bookings' },
+        { path: '/manage-user/banned', name: 'Banned Users' }
+      ]
+    },
+    {
       path: '/manage-role',
       name: 'Manage Role',
       icon: <EmojiPeopleOutlined />,
@@ -84,18 +96,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       icon: <CalendarToday />,
       category: 'USER MANAGEMENT'
     },
-    {
-      path: '/manage-users',
-      name: 'Manage Users',
-      icon: <Person />,
-      category: 'USER MANAGEMENT',
-      dropdown: true,
-      submenu: [
-        { path: '/manage-user/users', name: 'App Users' },
-        { path: '/manage-user/booking', name: 'Hotel Bookings' },
-        { path: '/manage-user/banned', name: 'Banned Users' }
-      ]
-    },
+
     {
       path: '/tickets',
       name: 'Tickets',

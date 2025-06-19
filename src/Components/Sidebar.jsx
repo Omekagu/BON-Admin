@@ -197,17 +197,17 @@ const Sidebar = ({ isOpen, onClose }) => {
     setShowSidebar(isOpen)
   }, [isOpen])
 
-  const Hamburger = ({ onClick, isOpen }) => (
-    <button className='hamburger' onClick={onClick} aria-label='Toggle sidebar'>
-      <span
-        style={isOpen ? { transform: 'rotate(45deg) translateY(8px)' } : {}}
-      />
-      <span style={isOpen ? { opacity: 0 } : {}} />
-      <span
-        style={isOpen ? { transform: 'rotate(-45deg) translateY(-8px)' } : {}}
-      />
-    </button>
-  )
+  // const Hamburger = ({ onClick, isOpen }) => (
+  //   <button className='hamburger' onClick={onClick} aria-label='Toggle sidebar'>
+  //     <span
+  //       style={isOpen ? { transform: 'rotate(45deg) translateY(8px)' } : {}}
+  //     />
+  //     <span style={isOpen ? { opacity: 0 } : {}} />
+  //     <span
+  //       style={isOpen ? { transform: 'rotate(-45deg) translateY(-8px)' } : {}}
+  //     />
+  //   </button>
+  // )
   // Overlay click to close (on mobile)
   const Overlay = () =>
     showSidebar && window.innerWidth <= 768 ? (

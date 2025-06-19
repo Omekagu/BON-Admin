@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Box,
   Button,
@@ -16,24 +16,20 @@ import {
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import SearchIcon from '@mui/icons-material/Search'
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded'
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
-import PrintRoundedIcon from '@mui/icons-material/PrintRounded'
-import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded'
-import axios from 'axios'
-import { useSnackbar } from 'notistack'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import axios from 'axios'
 import { styled } from '@mui/material/styles'
 import '@fontsource/plus-jakarta-sans/400.css'
 import '@fontsource/plus-jakarta-sans/700.css'
 
-// For pretty date display
 dayjs.extend(relativeTime)
 
-const roleColors = {
-  user: 'default',
-  admin: 'success',
-  superadmin: 'secondary'
+const statusColors = {
+  Pending: 'warning',
+  Confirmed: 'success',
+  Cancelled: 'error',
+  Completed: 'info'
 }
 
 const FuturisticDataGrid = styled(DataGrid)(({ theme }) => ({
@@ -72,50 +68,25 @@ const FuturisticDataGrid = styled(DataGrid)(({ theme }) => ({
 
 const columns = [
   {
-    field: 'profileImage',
-    headerName: '',
-    width: 60,
-    renderCell: params =>
-      params.value ? (
-        <Tooltip title={params.row.firstname + ' ' + params.row.surname}>
-          <Avatar
-            src={params.value}
-            alt={params.row.firstname}
-            sx={{ width: 36, height: 36, boxShadow: 2 }}
-          />
-        </Tooltip>
-      ) : (
-        <Avatar sx={{ width: 36, height: 36, boxShadow: 2 }}>
-          {(params.row.firstname?.[0] ?? '?').toUpperCase()}
-        </Avatar>
-      ),
-    sortable: false,
-    filterable: false,
-    disableExport: true
-  },
-  {
-    field: 'firstname',
+    field: 'userFirstName',
     headerName: 'First Name',
     minWidth: 120,
     flex: 1,
-    renderCell: params => (
-      <Typography fontWeight={600}>{params.value}</Typography>
-    )
+    valueGetter: params => params.row.userId?.firstname || ''
   },
   {
-    field: 'surname',
+    field: 'userSurname',
     headerName: 'Surname',
     minWidth: 120,
     flex: 1,
-    renderCell: params => (
-      <Typography fontWeight={600}>{params.value}</Typography>
-    )
+    valueGetter: params => params.row.userId?.surname || ''
   },
   {
-    field: 'email',
+    field: 'userEmail',
     headerName: 'Email',
     minWidth: 200,
     flex: 2,
+    valueGetter: params => params.row.userId?.email || '',
     renderCell: params => (
       <Tooltip title={params.value}>
         <span
@@ -131,38 +102,91 @@ const columns = [
     )
   },
   {
-    field: 'phoneNumber',
-    headerName: 'Phone',
-    minWidth: 140,
-    flex: 1
-  },
-  {
-    field: 'userCountry',
-    headerName: 'Country',
-    minWidth: 120,
-    flex: 1
-  },
-  {
-    field: 'role',
-    headerName: 'Role',
-    minWidth: 110,
-    flex: 1,
-    renderCell: params =>
-      params.value ? (
-        <Chip
-          size='small'
-          label={params.value.charAt(0).toUpperCase() + params.value.slice(1)}
-          color={roleColors[params.value] || 'default'}
-          sx={{ fontWeight: 600, fontSize: 13, letterSpacing: 0.2 }}
-          variant={params.value === 'user' ? 'outlined' : 'filled'}
+    field: 'hotelDetails',
+    headerName: 'Room Details',
+    minWidth: 300,
+    flex: 2,
+    renderCell: params => (
+      <Stack direction='row' alignItems='center' spacing={2}>
+        <Avatar
+          src={params.value?.images?.[0]}
+          alt={params.value?.name}
+          sx={{ width: 48, height: 36, borderRadius: 2, mr: 1 }}
+          variant='rounded'
         />
-      ) : null
+        <Box>
+          <Typography variant='subtitle2' fontWeight={700}>
+            {params.row?.hotelName || 'No Hotel Name'}
+          </Typography>
+          <Typography variant='caption' color='text.secondary'>
+            {params.value?.name}
+          </Typography>
+        </Box>
+      </Stack>
+    )
+  },
+
+  {
+    field: 'checkInDate',
+    headerName: 'Check In',
+    minWidth: 160,
+    flex: 1,
+    valueGetter: params =>
+      params.value ? dayjs(params.value).format('DD MMM YYYY, ddd') : ''
+  },
+  {
+    field: 'checkOutDate',
+    headerName: 'Check Out',
+    minWidth: 160,
+    flex: 1,
+    valueGetter: params =>
+      params.value ? dayjs(params.value).format('DD MMM YYYY, ddd') : ''
+  },
+  {
+    field: 'rooms',
+    headerName: 'NO Rooms',
+    minWidth: 110,
+    flex: 1
+  },
+  {
+    field: 'guests',
+    headerName: 'Guests',
+    minWidth: 90,
+    flex: 1
+  },
+  {
+    field: 'nights',
+    headerName: 'Nights',
+    minWidth: 90,
+    flex: 1
+  },
+  {
+    field: 'totalPrice',
+    headerName: 'Total Price',
+    minWidth: 120,
+    flex: 1,
+    valueFormatter: params =>
+      params.value ? `₦${params.value.toLocaleString()}` : ''
+  },
+  {
+    field: 'status',
+    headerName: 'Status',
+    minWidth: 200,
+    flex: 1,
+    renderCell: params => (
+      <Chip
+        label={params.value}
+        color={statusColors[params.value] || 'default'}
+        sx={{ fontWeight: 600, fontSize: 13 }}
+        variant={params.value === 'Pending' ? 'outlined' : 'filled'}
+      />
+    )
   },
   {
     field: 'createdAt',
-    headerName: 'Created',
-    minWidth: 170,
-    flex: 1,
+    headerName: 'Booked On',
+    minWidth: 160,
+    flex: 1.2,
     valueGetter: params =>
       params.value ? dayjs(params.value).format('DD MMM YYYY, HH:mm') : '',
     renderCell: params =>
@@ -173,92 +197,48 @@ const columns = [
       ) : (
         ''
       )
-  },
-  {
-    field: 'dob',
-    headerName: 'DOB',
-    minWidth: 110,
-    flex: 1,
-    valueGetter: params =>
-      params.value ? dayjs(params.value).format('DD MMM YYYY') : ''
-  },
-  {
-    field: 'gender',
-    headerName: 'Gender',
-    minWidth: 100,
-    flex: 1
-  },
-  {
-    field: 'address',
-    headerName: 'Address',
-    minWidth: 180,
-    flex: 2,
-    renderCell: params => (
-      <Tooltip title={params.value}>
-        <span
-          style={{
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'
-          }}
-        >
-          {params.value}
-        </span>
-      </Tooltip>
-    )
-  },
-  {
-    field: 'referralCode',
-    headerName: 'Referral',
-    minWidth: 90,
-    flex: 1
   }
 ]
 
-export default function BookingOrder () {
-  const [search, setSearch] = React.useState('')
-  const [pageSize, setPageSize] = React.useState(10)
-  const [rows, setRows] = React.useState([])
-  const [loading, setLoading] = React.useState(false)
-  const { enqueueSnackbar } = useSnackbar()
+export default function BookingHistoryComponent () {
+  const [search, setSearch] = useState('')
+  const [pageSize, setPageSize] = useState(10)
+  const [rows, setRows] = useState([])
+  const [loading, setLoading] = useState(false)
   const theme = useTheme()
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLoading(true)
     axios
-      .get('http://localhost:5001/user/users')
+      .get('http://localhost:5001/booking/bookings')
       .then(response => {
-        const users = Array.isArray(response.data)
-          ? response.data
-          : Array.isArray(response.data.users)
-          ? response.data.users
-          : [response.data]
+        const bookings = Array.isArray(response.data) ? response.data : []
+        console.log('Booking history fetched successfully')
         setRows(
-          users.map((user, idx) => ({
-            ...user,
-            id: user._id || idx
+          bookings.map((booking, idx) => ({
+            ...booking,
+            id: booking._id || idx
           }))
         )
       })
-      .catch(error => {
-        enqueueSnackbar('Failed to fetch users.', { variant: 'error' })
+      .catch(() => {
         setRows([])
+        console.log('Error fetching booking history')
       })
       .finally(() => setLoading(false))
-  }, [enqueueSnackbar])
+  }, [])
 
   const filteredRows = rows.filter(row =>
     [
-      row.referralCode,
-      row.firstname,
-      row.surname,
-      row.email,
-      row.phoneNumber,
-      row.userCountry,
-      row.deviceType,
-      row.gender,
-      row.role,
-      row.address
+      row.hotelDetails?.name,
+      row.hotelName,
+      row.status,
+      row.totalPrice,
+      row.nights,
+      row.rooms,
+      row.guests,
+      row.checkInDate,
+      row.checkOutDate
     ]
       .join(' ')
       .toLowerCase()
@@ -266,7 +246,7 @@ export default function BookingOrder () {
   )
 
   return (
-    <Box sx={{ p: { xs: 1, sm: 3 }, bgcolor: '#ffff', minHeight: '100vh' }}>
+    <Box sx={{ p: { xs: 1, sm: 3 }, bgcolor: '#fff', minHeight: '100vh' }}>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={2}
@@ -286,12 +266,12 @@ export default function BookingOrder () {
             WebkitTextFillColor: 'transparent'
           }}
         >
-          User Directory
+          Booking History
         </Typography>
         <Stack direction='row' spacing={1}>
           <TextField
             size='small'
-            placeholder='Search users...'
+            placeholder='Search bookings...'
             value={search}
             onChange={e => setSearch(e.target.value)}
             InputProps={{
@@ -318,22 +298,6 @@ export default function BookingOrder () {
             startIcon={<FilterAltRoundedIcon />}
           >
             Filters
-          </Button>
-          <Button
-            variant='contained'
-            color='secondary'
-            startIcon={<AddCircleRoundedIcon />}
-            sx={{
-              borderRadius: 2,
-              textTransform: 'none',
-              fontWeight: 700,
-              fontFamily: 'Plus Jakarta Sans, sans-serif',
-              px: 2.2,
-              background: '#000',
-              boxShadow: '0 2px 10px 0 rgba(127, 86, 217, 0.14)'
-            }}
-          >
-            Add User
           </Button>
         </Stack>
       </Stack>
@@ -375,47 +339,6 @@ export default function BookingOrder () {
           }}
           disableSelectionOnClick
         />
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          alignItems='center'
-          justifyContent='space-between'
-          spacing={1}
-          sx={{
-            px: 1,
-            py: 1,
-            bgcolor: '#f7fafd',
-            borderBottomLeftRadius: 16,
-            borderBottomRightRadius: 16,
-            mt: 2
-          }}
-        >
-          <Stack direction='row' spacing={1}>
-            <Button
-              color='inherit'
-              variant='text'
-              size='small'
-              startIcon={<PrintRoundedIcon />}
-              sx={{ textTransform: 'none' }}
-              onClick={() => window.print()}
-            >
-              Print
-            </Button>
-            <Button
-              color='inherit'
-              variant='text'
-              size='small'
-              startIcon={<FileDownloadRoundedIcon />}
-              sx={{ textTransform: 'none' }}
-              onClick={() =>
-                enqueueSnackbar('Export feature coming soon.', {
-                  variant: 'info'
-                })
-              }
-            >
-              Export
-            </Button>
-          </Stack>
-        </Stack>
       </Box>
     </Box>
   )

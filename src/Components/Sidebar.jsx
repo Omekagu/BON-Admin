@@ -62,7 +62,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       category: 'HOME',
       dropdown: true,
       submenu: [
-        { path: '/dashboard/overview', name: 'Overview' },
+        { path: '/dashboard', name: 'Overview' },
         { path: '/dashboard/analytics', name: 'Analytics' }
       ]
     },

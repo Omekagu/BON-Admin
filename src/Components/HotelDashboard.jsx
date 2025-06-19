@@ -30,19 +30,19 @@ ChartJS.register(
   Legend
 )
 
-const getDayLabel = dateStr => {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString(undefined, { weekday: 'short' })
-}
+// const getDayLabel = dateStr => {
+//   const date = new Date(dateStr)
+//   return date.toLocaleDateString(undefined, { weekday: 'short' })
+// }
 
-const getDateLabel = dateStr => {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString()
-}
+// const getDateLabel = dateStr => {
+//   const date = new Date(dateStr)
+//   return date.toLocaleDateString()
+// }
 
 const HotelDashboard = () => {
   const [bookings, setBookings] = useState([])
-  const [loading, setLoading] = useState(true)
+  // const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios

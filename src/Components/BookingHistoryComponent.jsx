@@ -210,11 +210,7 @@ export default function BookingHistoryComponent () {
   useEffect(() => {
     setLoading(true)
     axios
-<<<<<<< HEAD:src/Components/BookingHistoryComponent.jsx
       .get('https://bonserver-vic7.onrender.com/booking/bookings')
-=======
-      .get('https://bonserver-vic7.onrender.com/user/users')
->>>>>>> 0071953fb8ed44b9bfd7284bd42e3726ec7c1000:src/Components/BookingOrder.jsx
       .then(response => {
         const bookings = Array.isArray(response.data) ? response.data : []
         console.log('Booking history fetched successfully')

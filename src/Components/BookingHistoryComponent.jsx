@@ -211,7 +211,7 @@ export default function BookingHistoryComponent () {
     setLoading(true)
     axios
 <<<<<<< HEAD:src/Components/BookingHistoryComponent.jsx
-      .get('http://localhost:5001/booking/bookings')
+      .get('https://bonserver-vic7.onrender.com/booking/bookings')
 =======
       .get('https://bonserver-vic7.onrender.com/user/users')
 >>>>>>> 0071953fb8ed44b9bfd7284bd42e3726ec7c1000:src/Components/BookingOrder.jsx

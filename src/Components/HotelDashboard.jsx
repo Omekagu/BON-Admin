@@ -46,7 +46,7 @@ const HotelDashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5001/booking/bookings')
+      .get('https://bonserver-vic7.onrender.com/booking/bookings')
       .then(response => {
         setBookings(Array.isArray(response.data) ? response.data : [])
       })

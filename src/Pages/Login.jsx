@@ -26,10 +26,13 @@ const Login = () => {
     setLoading(true)
 
     try {
-      const res = await axios.post('http://10.0.1.27:5001/admin/login', {
-        email,
-        password
-      })
+      const res = await axios.post(
+        'https://bonserver-vic7.onrender.com/admin/login',
+        {
+          email,
+          password
+        }
+      )
       console.log('Login Success:', res.data)
       const token = res.data.token
       localStorage.setItem('token', token)

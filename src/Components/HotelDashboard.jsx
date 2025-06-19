@@ -42,7 +42,7 @@ ChartJS.register(
 
 const HotelDashboard = () => {
   const [bookings, setBookings] = useState([])
-  // const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios
@@ -53,7 +53,8 @@ const HotelDashboard = () => {
       .catch(() => setBookings([]))
       .finally(() => setLoading(false))
   }, [])
-
+  if (loading) return <div>Loading...</div>
+  if (!bookings.length) return <div>No bookings found</div>
   // Stats
   const totalBookings = bookings.length
   const checkIns = bookings.filter(

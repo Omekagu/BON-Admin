@@ -27,7 +27,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        'https://bonserver-vic7.onrender.com/admin/login',
+        'https://bonserver-production.up.railway.app//admin/login',
         {
           email,
           password

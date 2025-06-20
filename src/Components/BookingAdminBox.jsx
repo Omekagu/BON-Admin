@@ -144,7 +144,7 @@ export default function BookingAdminBox () {
   useEffect(() => {
     setLoading(true)
     axios
-      .get('https://bonserver-vic7.onrender.com/booking/bookings')
+      .get('https://bonserver-production.up.railway.app//booking/bookings')
       .then(res => {
         // Sort by createdAt, newest first
         const sorted = Array.isArray(res.data)

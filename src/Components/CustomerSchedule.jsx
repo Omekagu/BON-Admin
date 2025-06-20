@@ -8,7 +8,7 @@ const CustomerSchedule = ({ onSeeAll }) => {
   useEffect(() => {
     setLoading(true)
     axios
-      .get('https://bonserver-vic7.onrender.com/booking/bookings')
+      .get('https://bonserver-production.up.railway.app//booking/bookings')
       .then(response => {
         // Sort newest to oldest and take first 5
         const sorted = Array.isArray(response.data)

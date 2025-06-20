@@ -210,7 +210,7 @@ export default function BookingHistoryComponent () {
   useEffect(() => {
     setLoading(true)
     axios
-      .get('https://bonserver-production.up.railway.app//booking/bookings')
+      .get('https://bonserver-production.up.railway.app/booking/bookings')
       .then(response => {
         const bookings = Array.isArray(response.data) ? response.data : []
         console.log('Booking history fetched successfully')

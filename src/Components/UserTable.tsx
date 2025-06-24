@@ -9,7 +9,6 @@ import {
   InputAdornment,
   Avatar,
   Tooltip,
-  useTheme,
   CircularProgress,
   alpha
 } from '@mui/material'
@@ -221,7 +220,6 @@ export default function UserTable () {
   const [rows, setRows] = React.useState([])
   const [loading, setLoading] = React.useState(false)
   const { enqueueSnackbar } = useSnackbar()
-  const theme = useTheme()
 
   React.useEffect(() => {
     setLoading(true)
@@ -274,20 +272,6 @@ export default function UserTable () {
         justifyContent='space-between'
         sx={{ mb: 3 }}
       >
-        <Typography
-          variant='h4'
-          fontWeight={700}
-          fontFamily='Plus Jakarta Sans, sans-serif'
-          color={theme.palette.text.primary}
-          sx={{
-            letterSpacing: '.5px',
-            background: 'linear-gradient(90deg, #5f78ff 0%, #7c53e7 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}
-        >
-          User Directory
-        </Typography>
         <Stack direction='row' spacing={1}>
           <TextField
             size='small'
